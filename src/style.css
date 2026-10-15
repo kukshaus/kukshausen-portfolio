@@ -1,0 +1,309 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Lexend Deca';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/assets/fonts/lexend-deca-latin.woff2') format('woff2');
+}
+
+:root {
+  --text-color-primary: #2f3349;
+  --text-color-secondary: #54595f;
+  --green: #073e29;
+  --cream: #fef3df;
+  --mint: #e0f1f1;
+  --sage: #e6ebe4;
+  --paper: #f7f9f4;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: 'Lexend Deca', system-ui, sans-serif;
+  color: var(--text-color-primary);
+  background: #fff;
+}
+
+body * {
+  border-color: var(--text-color-primary);
+}
+
+/* ---- components carried over from the original ---- */
+
+.tooltip {
+  position: relative;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  width: 240px;
+  background-color: #fffffff2;
+  color: #000;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: -60px;
+  transform: translateY(6px);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+.tooltip:hover,
+.tooltip:focus-within {
+  z-index: 10;
+}
+.tooltip:hover .tooltiptext,
+.tooltip:focus-within .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.required {
+  position: relative;
+}
+.required::after {
+  content: '*';
+  position: absolute;
+  inset-inline-end: -12px;
+  color: tomato;
+}
+
+.custom-grid {
+  grid-template-columns: repeat(auto-fit, 80px);
+  gap: 1rem;
+  justify-content: center;
+}
+
+.contact-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* ---- wow layer ---- */
+
+/* Drifting colour blobs behind the hero. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.55;
+  will-change: transform;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.blob-1 {
+  width: 38rem;
+  height: 38rem;
+  left: -12rem;
+  top: -14rem;
+  background: #e0f1f1;
+}
+.blob-2 {
+  width: 30rem;
+  height: 30rem;
+  right: -8rem;
+  top: 2rem;
+  background: #0b5a3b;
+  opacity: 0.16;
+  animation-duration: 24s;
+  animation-delay: -6s;
+}
+.blob-3 {
+  width: 26rem;
+  height: 26rem;
+  left: 35%;
+  bottom: -14rem;
+  background: #f5d9a8;
+  animation-duration: 21s;
+  animation-delay: -12s;
+}
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(6rem, 3rem, 0) scale(1.15);
+  }
+}
+
+/* Headline words slide up out of a clipped line.
+   Hidden start states are gated on html.js so the page is fully visible without JavaScript. */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.word {
+  display: inline-block;
+}
+.js .word {
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.5s ease;
+  transition-delay: var(--d, 0ms);
+}
+.is-ready .word {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Generic fade-up used for everything below the fold. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero portrait: enters with a tilt, then follows the cursor. */
+.portrait {
+  transform-style: preserve-3d;
+  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px))
+    scale(var(--s, 1));
+  opacity: var(--o, 1);
+  transition:
+    transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.8s ease;
+  box-shadow: 0 30px 60px -20px rgba(7, 62, 41, 0.35);
+}
+.js .portrait {
+  --ty: 40px;
+  --s: 0.96;
+  --o: 0;
+}
+.js.is-ready .portrait {
+  --ty: 0px;
+  --s: 1;
+  --o: 1;
+}
+.portrait.is-tracking {
+  transition:
+    transform 0.12s ease-out,
+    opacity 0.8s ease;
+}
+
+/* Soft highlight sweeping across the portrait once. */
+.portrait::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+.is-ready .portrait::after {
+  animation: shine 1.4s ease-out 0.9s 1 forwards;
+}
+@keyframes shine {
+  to {
+    transform: translateX(120%);
+  }
+}
+
+/* Primary call to action: subtle magnetic pull + glow. */
+.cta {
+  position: relative;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease;
+}
+.cta:hover {
+  box-shadow: 0 12px 30px -10px rgba(7, 62, 41, 0.6);
+}
+
+/* Stat strip under the hero copy. */
+.stat-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Skill icon hover lift. */
+.skill img {
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.25s ease;
+}
+.skill:hover img,
+.skill:focus-within img {
+  transform: translateY(-4px) scale(1.12);
+  filter: drop-shadow(0 8px 12px rgba(7, 62, 41, 0.25));
+}
+
+/* Project cards. */
+.card {
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 40px -24px rgba(7, 62, 41, 0.45);
+}
+
+/* Form field focus ring in brand colour. */
+.field:focus {
+  box-shadow: inset 0 0 0 2px var(--green);
+}
+
+/* Scroll progress bar in the sticky header. */
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--green);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .blob,
+  .is-ready .portrait::after {
+    animation: none;
+  }
+  .word,
+  [data-reveal],
+  .portrait,
+  .cta,
+  .card,
+  .skill img {
+    transition: none;
+  }
+  .word,
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+  .portrait {
+    --o: 1;
+    --ty: 0px;
+    --s: 1;
+  }
+}
