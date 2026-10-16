@@ -7,6 +7,23 @@
   font-display: swap;
   src: url('/assets/fonts/lexend-deca-latin.woff2') format('woff2');
 }
+/* Metric-matched fallbacks so the swap to Lexend Deca does not re-wrap the page (CLS). */
+@font-face {
+  font-family: 'Lexend Deca Fallback';
+  src: local('Roboto');
+  size-adjust: 102%;
+  ascent-override: 98%;
+  descent-override: 24.5%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Lexend Deca Fallback Arial';
+  src: local('Arial');
+  size-adjust: 111%;
+  ascent-override: 90%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
 
 :root {
   --text-color-primary: #2f3349;
@@ -24,7 +41,7 @@ html {
 
 html,
 body {
-  font-family: 'Lexend Deca', system-ui, sans-serif;
+  font-family: 'Lexend Deca', 'Lexend Deca Fallback', 'Lexend Deca Fallback Arial', system-ui, sans-serif;
   color: var(--text-color-primary);
   background: #fff;
   /* The decorative blobs bleed past the right edge; clip keeps the sticky header working. */
@@ -195,12 +212,10 @@ body * {
 .js .portrait {
   --ty: 40px;
   --s: 0.96;
-  --o: 0;
 }
 .js.is-ready .portrait {
   --ty: 0px;
   --s: 1;
-  --o: 1;
 }
 .portrait.is-tracking {
   transition:
@@ -417,4 +432,74 @@ body * {
   border-radius: 3px;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08);
   flex: none;
+}
+
+/* ---- hero additions ---- */
+.cta-secondary {
+  border: 2px solid var(--green);
+  color: var(--green);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+.cta-secondary:hover,
+.cta-secondary:focus-visible {
+  background: var(--green);
+  color: #fff;
+}
+.avail-dot {
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #1f9d55;
+  margin-right: 0.5rem;
+  box-shadow: 0 0 0 3px rgb(31 157 85 / 0.2);
+}
+
+/* ---- services, process, faq ---- */
+.svc h3 {
+  color: var(--green);
+}
+.step {
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
+}
+.faq summary {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  flex: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--green);
+}
+.faq[open] summary::after {
+  content: '−';
+}
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%232f3349' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+.legal .legal-title {
+  font-size: clamp(2rem, 5vmax, 3rem);
+  line-height: 1.1;
+  color: var(--green);
+  margin: 0 0 0.5rem;
+}
+
+/* Wordmark-style brand glyphs (Malt, Upwork) need more room than the 20px glyph icons. */
+.contact-icon-wide {
+  width: 28px;
+  height: 28px;
+  margin-top: -2px;
 }

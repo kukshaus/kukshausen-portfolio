@@ -66,10 +66,9 @@ function animateCounters(): void {
     };
     requestAnimationFrame(step);
   };
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    counters.forEach((el) => (el.textContent = `${el.dataset.count}${el.dataset.suffix ?? ''}`));
-    return;
-  }
+  // The HTML ships the final numbers; only reset to 0 when the count-up will actually run.
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  counters.forEach((el) => (el.textContent = `0${el.dataset.suffix ?? ''}`));
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
@@ -169,9 +168,9 @@ function wireContactForm(): void {
     delete data.botcheck;
 
     if (!endpoint) {
-      const subject = encodeURIComponent(`Website message from ${data.name}`);
+      const subject = encodeURIComponent(`Website message from ${data.name}: ${data.topic ?? ''}`);
       const body = encodeURIComponent(
-        `${data.message}\n\n—\n${data.name}\n${data.email}${data.phone ? `\n${data.phone}` : ''}`,
+        `${data.message}\n\n—\n${data.name}\n${data.email}${data.phone ? `\n${data.phone}` : ''}\nTopic: ${data.topic ?? ''}`,
       );
       window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
       say('Opening your mail app with the message prefilled.', true);
@@ -185,7 +184,7 @@ function wireContactForm(): void {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(
           accessKey
-            ? { access_key: accessKey, subject: `Website message from ${data.name}`, from_name: 'kukshausen.me', ...data }
+            ? { access_key: accessKey, subject: `Website message from ${data.name}: ${data.topic ?? ''}`, from_name: 'kukshausen.me', ...data }
             : data,
         ),
       });
