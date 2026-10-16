@@ -11,7 +11,7 @@
 @font-face {
   font-family: 'Lexend Deca Fallback';
   src: local('Roboto');
-  size-adjust: 102%;
+  size-adjust: 109%;
   ascent-override: 98%;
   descent-override: 24.5%;
   line-gap-override: 0%;
@@ -506,4 +506,17 @@ select.field {
 
 .field::placeholder {
   color: #5b6070;
+}
+
+/* Compact stats row and expanded FAQ list */
+@media (max-width: 639px) {
+  .stats dt {
+    font-size: 0.7rem;
+  }
+  .stats dd {
+    font-size: 1.4rem;
+  }
+}
+.faq-item h3 {
+  color: var(--green);
 }
