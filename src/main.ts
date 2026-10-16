@@ -129,15 +129,20 @@ function trackScrollProgress(): void {
 }
 
 /**
- * Contact form. Posts JSON to VITE_CONTACT_ENDPOINT when one is configured,
- * otherwise opens the visitor's mail client with the message prefilled.
+ * Contact form. Posts JSON to Web3Forms when VITE_CONTACT_ACCESS_KEY is set
+ * (or to VITE_CONTACT_ENDPOINT), otherwise opens the visitor's mail client
+ * with the message prefilled.
  */
 function wireContactForm(): void {
   const form = document.querySelector<HTMLFormElement>('#contact-form');
   if (!form) return;
   const status = form.querySelector<HTMLElement>('[data-status]');
   const submit = form.querySelector<HTMLButtonElement>('button[type="submit"]');
-  const endpoint = import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined;
+  const accessKey = import.meta.env.VITE_CONTACT_ACCESS_KEY as string | undefined;
+  // A Web3Forms access key implies its endpoint; any other endpoint can still be set explicitly.
+  const endpoint =
+    (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) ||
+    (accessKey ? 'https://api.web3forms.com/submit' : undefined);
   const recipient = form.dataset.recipient ?? '';
 
   const say = (text: string, ok: boolean) => {
@@ -155,6 +160,13 @@ function wireContactForm(): void {
       return;
     }
     const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+    // Honeypot: real visitors never see this field, bots fill it in.
+    if (data.botcheck) {
+      say("Thanks for reaching out! I'll be in contact soon.", true);
+      form.reset();
+      return;
+    }
+    delete data.botcheck;
 
     if (!endpoint) {
       const subject = encodeURIComponent(`Website message from ${data.name}`);
@@ -171,7 +183,11 @@ function wireContactForm(): void {
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(
+          accessKey
+            ? { access_key: accessKey, subject: `Website message from ${data.name}`, from_name: 'kukshausen.me', ...data }
+            : data,
+        ),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       say("Thanks for reaching out! I'll be in contact soon.", true);

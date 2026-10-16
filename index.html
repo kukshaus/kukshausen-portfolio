@@ -437,6 +437,7 @@
             <section class="bg-white w-full p-10 shadow-2xl">
               <h3 class="text-[clamp(1.5rem,4vmax,2.5rem)] leading-tight">Send me a message</h3>
               <form id="contact-form" class="mt-5 flex flex-col gap-4" data-recipient="sergej@kukshausen.me" novalidate>
+                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="flex flex-col gap-1">
                   <label for="name" class="w-fit required">Your name</label>
                   <input id="name" name="name" type="text" required autocomplete="name" placeholder="Enter your full name here" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 placeholder:font-light outline-none" />
