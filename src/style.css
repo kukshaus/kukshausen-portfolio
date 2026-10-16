@@ -503,3 +503,7 @@ select.field {
   height: 28px;
   margin-top: -2px;
 }
+
+.field::placeholder {
+  color: #5b6070;
+}

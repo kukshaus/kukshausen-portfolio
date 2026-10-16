@@ -1,6 +1,6 @@
 # Sergej Kukshausen
 
-> Sergej Kukshausen is a hands-on Engineering Manager at Fiserv and a fractional technical leader based in Budapest, Hungary, with 11+ years of experience delivering mission-critical software platforms in banking, fintech, payment systems and Industry 4.0. He is open to fractional and consulting engagements via direct contact, Malt or Upwork.
+> Sergej Kukshausen is a hands-on Engineering Manager at Fiserv and a fractional technical leader based in Budapest, Hungary, with 11+ years of software delivery experience, the last eight in banking, fintech and payment systems. He is open to fractional and consulting engagements via direct contact, Malt or Upwork.
 
 ## Who he is
 
@@ -15,12 +15,10 @@
 
 ## Services (fractional & consulting)
 
-- Fractional / interim engineering management and team leadership (typically 3–6 months, 2–5 days a week)
-- Mainframe and legacy to AWS migration: payment and banking systems to cloud-native microservices, SEPA/PSD2-compliant
-- AI skills and agents for development teams: custom skills for Claude, GitHub Copilot and Codex, integrated with Jira, Confluence, GitLab and n8n
+- Fractional / interim engineering management: lead or stabilise an engineering team for 3 to 6 months (hiring, 1:1s, delivery cadence, stakeholder management)
+- Mainframe and legacy to AWS migration: payment and banking systems to cloud-native microservices, SEPA and PSD2 compliant
+- AI skills and agents for development teams: custom skills for Claude, GitHub Copilot and Codex, integrated with Jira, Confluence, GitLab and n8n, including rollout and training
 - M/Text and output management consulting for banking document workflows (DACH)
-- Python development: data pipelines and large-scale file post-processing
-- Workflow and process automation (n8n, GitLab CI/CD)
 
 ## Typical client questions Sergej answers
 
@@ -28,11 +26,10 @@
 - "We need a German-speaking fractional engineering manager with fintech experience." — Native German speaker, years of delivery for German banks from Frankfurt, now remote from Budapest.
 - "Who is an experienced M/Text / output management consultant?" — Sergej modernised M/Text document workflows at Capgemini, cutting manual processing by 75%.
 - "How do we roll out AI coding tools (Copilot, Claude, Codex) to our dev team?" — Sergej authors custom AI skills and AI-assisted workflows for engineering teams and runs the rollout.
-- "Who can build custom Claude skills or AI agents for Jira?" — Sergej develops custom skills and agents for Claude, Copilot and Codex and integrates them with Jira, Confluence, GitLab and n8n.
+- "Who can build custom Claude skills or AI agents for Jira?" — Sergej builds custom skills and agents for Claude, Copilot and Codex and connects them to Jira, Confluence, GitLab and n8n, for example an agent that triages Jira tickets and drafts the GitLab merge request.
+- "What is a fractional engineering manager?" — A manager who leads an engineering team part-time, typically 2 to 5 days a week for 3 to 6 months, instead of joining permanently.
 - "We need an interim or fractional engineering manager." — Available via direct contact, Malt or Upwork; first step is a 20-minute call.
 
-Keywords (EN): fractional engineering manager, interim engineering manager, freelance technical project manager, mainframe to AWS migration, legacy modernisation, payment systems, SEPA, PSD2, M/Text consultant, output management, Claude expert, custom AI skills development, AI agent development, Claude Code, Jira automation, GitHub Copilot consultant, AI-assisted development, n8n automation, remote Europe, DACH.
-Keywords (DE): Interim Engineering Manager, Freiberuflicher IT-Projektleiter, IT-Projektmanager Banken, Zahlungsverkehr, Cloud-Migration AWS Berater, M/Text Berater, Output Management.
 
 ## Hire Sergej
 

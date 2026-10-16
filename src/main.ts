@@ -208,5 +208,13 @@ magnetiseButtons();
 trackScrollProgress();
 wireContactForm();
 
+// Service cards link to the form with their topic preselected.
+document.querySelectorAll<HTMLAnchorElement>('a[data-topic]').forEach((link) => {
+  link.addEventListener('click', () => {
+    const select = document.querySelector<HTMLSelectElement>('#topic');
+    if (select && link.dataset.topic) select.value = link.dataset.topic;
+  });
+});
+
 // Flip the switch on the next frame so the entrance transitions actually run.
 requestAnimationFrame(() => document.documentElement.classList.add('is-ready'));
