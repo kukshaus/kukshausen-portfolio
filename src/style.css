@@ -35,6 +35,16 @@
   descent-override: 24.5%;
   line-gap-override: 0%;
 }
+/* Cyrillic is drawn by the Montserrat file, which is wider than Roboto: its own metric match. */
+@font-face {
+  font-family: 'Lexend Deca Fallback';
+  src: local('Roboto');
+  size-adjust: 114%;
+  ascent-override: 98%;
+  descent-override: 24.5%;
+  line-gap-override: 0%;
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
 @font-face {
   font-family: 'Lexend Deca Fallback Arial';
   src: local('Arial');
@@ -190,17 +200,23 @@ body * {
 .word {
   display: inline-block;
 }
+.h1-name {
+  display: block;
+  color: #073e29;
+  font-weight: 600;
+  font-size: 0.45em;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.35em;
+}
+/* Words stay painted from the first frame (opacity 1) so the headline counts for LCP;
+   only a short upward slide is animated. */
 .js .word {
-  transform: translateY(110%);
-  opacity: 0;
-  transition:
-    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 0.5s ease;
+  transform: translateY(35%);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
   transition-delay: var(--d, 0ms);
 }
 .is-ready .word {
   transform: translateY(0);
-  opacity: 1;
 }
 
 /* Generic fade-up used for everything below the fold. */
@@ -523,7 +539,11 @@ select.field {
   font-weight: 500;
 }
 .lang-switch a {
-  padding: 0.3rem 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 0.45rem;
   color: var(--text-color-secondary);
   border-radius: 4px;
 }
@@ -540,6 +560,9 @@ select.field {
     position: static;
     margin: 0 2rem 0 auto;
     font-size: 0.9rem;
+  }
+  .lang-switch a {
+    min-width: 44px;
   }
 }
 .legal .translation-note {

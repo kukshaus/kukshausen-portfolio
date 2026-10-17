@@ -6,7 +6,7 @@ export default {
   dateLong: '2026. október 16.',
 
   meta: {
-    title: 'Sergej Kukshausen | Engineering Manager és fractional tech lead',
+    title: 'Sergej Kukshausen | Szoftverfejlesztési vezető és tanácsadó',
     description:
       'Engineering Manager Budapesten: 11+ év szoftverfejlesztés, ebből 8 a bank- és fintech szektorban. Fractional vezetés, mainframe–AWS migráció, AI skillek.',
     ogImageAlt: 'Sergej Kukshausen portréja',
@@ -193,7 +193,7 @@ export default {
       },
       {
         q: 'Németül beszélő, fintech-tapasztalattal rendelkező fractional engineering managert keresünk. Ön az?',
-        a: 'Igen. Német anyanyelvű vagyok, és éveken át dolgoztam német bankoknak Frankfurtból, többek között egy fizetési routing platformon és PSD2-konform release-eken, amelyek három belső auditon mentek át nulla megállapítással. Budapestről dolgozom remote, előzetes egyeztetés alapján helyszínen is a DACH-régióban, német vagy angol nyelvű szerződéssel.',
+        a: 'Igen. Sergej Kukshausen vagyok, német anyanyelvű, és éveken át dolgoztam német bankoknak Frankfurtból, többek között egy fizetési routing platformon és PSD2-konform release-eken, amelyek három belső auditon mentek át nulla megállapítással. Budapestről dolgozom remote, előzetes egyeztetés alapján helyszínen is a DACH-régióban, német vagy angol nyelvű szerződéssel.',
       },
       {
         q: 'Hol találunk tapasztalt M/Text- és output management tanácsadót?',
@@ -205,7 +205,7 @@ export default {
       },
       {
         q: 'Tud egyedi Claude skilleket vagy AI agenteket fejleszteni Jirához?',
-        a: 'Igen. Egyedi skilleket és agenteket fejlesztek Claude-hoz, GitHub Copilothoz és Codexhez, és összekötöm őket a Jirával, a Confluence-szel, a GitLabbel és az n8n-nel, például egy agentet, amely triázsolja a Jira-ticketeket, és elkészíti a GitLab merge request vázlatát. Minden skillhez tesztek, használati útmutató és egy rövid átadó alkalom tartozik a csapat számára.',
+        a: 'Igen. Egyedi skilleket és agenteket fejlesztek Claude-hoz, GitHub Copilothoz és Codexhez, és összekötöm őket a Jirával, a Confluence-szel, a GitLabbel és az n8n-nel, például egy agentet, amely triázsolja a Jira-ticketeket, és elkészíti a GitLab merge request vázlatát. Minden skillhez tesztek, használati útmutató és egy rövid átadó alkalom tartozik a csapat számára. Nyilvános példa a {aiskills}Jira skillem a GitHubon{/aiskills}.',
       },
       {
         q: 'Hogyan indul egy interim vagy fractional megbízás?',
@@ -221,7 +221,7 @@ export default {
   contact: {
     eyebrow: 'Lépjünk kapcsolatba',
     h3: 'Beszéljünk a csapatáról &amp; a platformjáról.',
-    reply: 'Egy munkanapon belül válaszolok, magyarul, angolul, németül vagy oroszul. Az első lépés egy 20 perces hívás.',
+    reply: 'Egy munkanapon belül válaszolok angolul, németül vagy oroszul (magyarul alapszinten beszélek). Az első lépés egy 20 perces hívás.',
     calendar: 'Válasszon időpontot a naptáramban',
     infoH: 'Elérhetőségek',
     malt: 'Bízzon meg a Malton',

@@ -143,6 +143,8 @@ function wireContactForm(): void {
     (import.meta.env.VITE_CONTACT_ENDPOINT as string | undefined) ||
     (accessKey ? 'https://api.web3forms.com/submit' : undefined);
   const recipient = form.dataset.recipient ?? '';
+  // The markup has no novalidate so a no-JavaScript submit still validates; with JS we validate ourselves.
+  form.noValidate = true;
 
   const say = (text: string, ok: boolean) => {
     if (!status) return;
@@ -166,6 +168,8 @@ function wireContactForm(): void {
       return;
     }
     delete data.botcheck;
+    delete data.access_key;
+    delete data.from_name;
 
     if (!endpoint) {
       const subject = encodeURIComponent(`${form.dataset.msgSubject ?? 'Website message from'} ${data.name}: ${data.topic ?? ''}`);

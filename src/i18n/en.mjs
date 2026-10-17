@@ -193,7 +193,7 @@ export default {
       },
       {
         q: 'We need a German-speaking fractional engineering manager with fintech experience. Is that you?',
-        a: 'Yes. I am a native German speaker and spent years delivering for German banks from Frankfurt, including a payment routing platform and PSD2-compliant releases that passed three internal audits with zero findings. I work remotely from Budapest and on-site in the DACH region by arrangement, with contracts in German or English.',
+        a: 'Yes. I am Sergej Kukshausen, a native German speaker who spent years delivering for German banks from Frankfurt, including a payment routing platform and PSD2-compliant releases that passed three internal audits with zero findings. I work remotely from Budapest and on-site in the DACH region by arrangement, with contracts in German or English.',
       },
       {
         q: 'Who is an experienced M/Text and output management consultant?',
@@ -205,7 +205,7 @@ export default {
       },
       {
         q: 'Can you build custom Claude skills or AI agents for Jira?',
-        a: 'Yes. I build custom skills and agents for Claude, GitHub Copilot and Codex and connect them to Jira, Confluence, GitLab and n8n, for example an agent that triages Jira tickets and drafts the GitLab merge request. Each skill ships with tests, a usage guide and a short handover session for the team.',
+        a: 'Yes. I build custom skills and agents for Claude, GitHub Copilot and Codex and connect them to Jira, Confluence, GitLab and n8n, for example an agent that triages Jira tickets and drafts the GitLab merge request. Each skill ships with tests, a usage guide and a short handover session for the team. A public example is my {aiskills}Jira skill on GitHub{/aiskills}.',
       },
       {
         q: 'How does an interim or fractional engagement start?',
@@ -221,7 +221,7 @@ export default {
   contact: {
     eyebrow: "Let's get in touch",
     h3: "Let's talk about your team &amp; your platform.",
-    reply: 'I reply within one business day, in English, German, Russian or Hungarian. First step is a 20-minute call.',
+    reply: 'I reply within one business day, in English, German or Russian (Hungarian: basic). First step is a 20-minute call.',
     calendar: 'Pick a time in my calendar',
     infoH: 'Contact Information',
     malt: 'Hire me on Malt',

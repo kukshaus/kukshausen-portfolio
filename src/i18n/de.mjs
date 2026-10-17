@@ -6,7 +6,7 @@ export default {
   dateLong: '16. Oktober 2026',
 
   meta: {
-    title: 'Sergej Kukshausen | Engineering Manager &amp; Fractional Tech Lead',
+    title: 'Sergej Kukshausen | Interim Engineering Manager (Fintech)',
     description:
       'Engineering Manager in Budapest, 11+ Jahre Software-Delivery, davon 8 in Banking und Fintech. Fractional Leadership, Mainframe-zu-AWS-Migration, KI-Skills.',
     ogImageAlt: 'Porträt von Sergej Kukshausen',
@@ -193,7 +193,7 @@ export default {
       },
       {
         q: 'Wir suchen einen deutschsprachigen Fractional Engineering Manager mit Fintech-Erfahrung. Sind Sie das?',
-        a: 'Ja. Deutsch ist meine Muttersprache, und ich habe jahrelang von Frankfurt aus für deutsche Banken geliefert, darunter eine Payment-Routing-Plattform und PSD2-konforme Releases, die drei interne Audits ohne Feststellungen bestanden haben. Ich arbeite remote aus Budapest und nach Absprache vor Ort in der DACH-Region, mit Verträgen auf Deutsch oder Englisch.',
+        a: 'Ja. Ich bin Sergej Kukshausen, deutscher Muttersprachler, und habe jahrelang von Frankfurt aus für deutsche Banken geliefert, darunter eine Payment-Routing-Plattform und PSD2-konforme Releases, die drei interne Audits ohne Feststellungen bestanden haben. Ich arbeite remote aus Budapest und nach Absprache vor Ort in der DACH-Region, mit Verträgen auf Deutsch oder Englisch.',
       },
       {
         q: 'Wer ist ein erfahrener Berater für M/Text und Output-Management?',
@@ -205,7 +205,7 @@ export default {
       },
       {
         q: 'Können Sie individuelle Claude-Skills oder KI-Agents für Jira entwickeln?',
-        a: 'Ja. Ich entwickle individuelle Skills und Agents für Claude, GitHub Copilot und Codex und binde sie an Jira, Confluence, GitLab und n8n an, zum Beispiel einen Agent, der Jira-Tickets triagiert und den GitLab Merge Request vorbereitet. Jeder Skill wird mit Tests, einer Anleitung und einer kurzen Übergabesession für das Team ausgeliefert.',
+        a: 'Ja. Ich entwickle individuelle Skills und Agents für Claude, GitHub Copilot und Codex und binde sie an Jira, Confluence, GitLab und n8n an, zum Beispiel einen Agent, der Jira-Tickets triagiert und den GitLab Merge Request vorbereitet. Jeder Skill wird mit Tests, einer Anleitung und einer kurzen Übergabesession für das Team ausgeliefert. Ein öffentliches Beispiel ist mein {aiskills}Jira-Skill auf GitHub{/aiskills}.',
       },
       {
         q: 'Wie beginnt ein Interim- oder Fractional-Mandat?',
@@ -221,7 +221,7 @@ export default {
   contact: {
     eyebrow: 'Kontakt aufnehmen',
     h3: 'Sprechen wir über Ihr Team &amp; Ihre Plattform.',
-    reply: 'Ich antworte innerhalb eines Werktags, auf Deutsch, Englisch, Russisch oder Ungarisch. Erster Schritt ist ein 20-minütiges Gespräch.',
+    reply: 'Ich antworte innerhalb eines Werktags, auf Deutsch, Englisch oder Russisch (Ungarisch: Grundkenntnisse). Erster Schritt ist ein 20-minütiges Gespräch.',
     calendar: 'Termin in meinem Kalender wählen',
     infoH: 'Kontaktdaten',
     malt: 'Über Malt beauftragen',

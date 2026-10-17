@@ -21,6 +21,9 @@ const FLAGS = {
   hu: '<svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#CE2939"/><rect y="0.667" width="3" height="1.333" fill="#fff"/><rect y="1.333" width="3" height="0.667" fill="#477050"/></svg>',
 };
 
+const LOCALES = ['en_GB', 'de_DE', 'ru_RU', 'hu_HU'];
+const AISKILLS = 'https://github.com/kukshaus/ai-skills';
+const ACCESS_KEY = process.env.VITE_CONTACT_ACCESS_KEY ?? '';
 const link = (href, cls = 'underline underline-offset-4 text-[#073E29]') => [
   `<a href="${href}" target="_blank" rel="noopener" class="${cls}">`,
   '</a>',
@@ -80,7 +83,7 @@ function schema(t) {
         '@type': 'FAQPage', '@id': `${url}#faq`, isPartOf: { '@id': `${url}#profilepage` }, inLanguage: t.lang,
         mainEntity: t.faq.items.map((f) => ({
           '@type': 'Question', name: stripTags(f.q),
-          acceptedAnswer: { '@type': 'Answer', text: stripTags(fill(f.a, { calendly: ['', ` (${CALENDLY})`] })) },
+          acceptedAnswer: { '@type': 'Answer', text: stripTags(fill(f.a, { calendly: ['', ` (${CALENDLY})`], aiskills: ['', ` (${AISKILLS})`] })) },
         })),
       },
     ],
@@ -99,6 +102,7 @@ export function renderHome(t) {
 ${headCommon({ t, page: '', title: t.meta.title, description: t.meta.description, robots: 'index, follow' })}
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="${t.ogLocale}" />
+${LOCALES.filter((l) => l !== t.ogLocale).map((l) => `    <meta property="og:locale:alternate" content="${l}" />`).join('\n')}
     <meta property="og:url" content="${SITE}${langDir(t.lang)}" />
     <meta property="og:title" content="${t.meta.title}" />
     <meta property="og:description" content="${t.meta.description}" />
@@ -116,7 +120,7 @@ ${headCommon({ t, page: '', title: t.meta.title, description: t.meta.description
     <script>
       document.documentElement.classList.add('js');
     </script>
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lexend-deca-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/lexend-deca-latin.woff2" crossorigin />${t.lang === 'ru' ? '\n    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/montserrat-cyrillic.woff2" crossorigin />' : ''}
     <link rel="preload" as="image" imagesrcset="/assets/images/sergej-portrait-356.avif 356w, /assets/images/sergej-portrait-712.avif 712w" imagesizes="356px" type="image/avif" fetchpriority="high" media="(min-width: 768px)" />
 
     <script type="application/ld+json">
@@ -142,10 +146,9 @@ ${header(t, { page: '', anchors: true })}
         <div class="relative mx-auto max-w-[1170px] flex gap-4 flex-col md:flex-row">
           <div class="flex-1 pb-16">
             <p class="eyebrow text-[1rem] sm:text-[1.15rem]">
-              <span class="text-[#073E29] font-semibold">Sergej Kukshausen</span>
-              <span class="text-gray-600"> · ${t.hero.eyebrow}</span>
+              <span class="text-gray-600">${t.hero.eyebrow}</span>
             </p>
-            <h1 class="text-[clamp(2rem,4vmax,3rem)] leading-tight mt-2" data-split>${t.hero.h1}</h1>
+            <h1 class="text-[clamp(2rem,4vmax,3rem)] leading-tight mt-3" data-split><span class="h1-name">Sergej Kukshausen</span> ${t.hero.h1}</h1>
             <p class="mt-3 text-base sm:text-lg leading-relaxed">${t.hero.sub}</p>
 
             <div class="mt-6 flex flex-wrap gap-3">
@@ -272,7 +275,7 @@ ${SKILLS.map(([file, name], i) => `            <div class="skill flex items-cent
           <div class="flex flex-col gap-3">
 ${t.faq.items.map((f, i) => `            <article class="faq-item bg-white p-6" data-reveal style="--d: ${i * 60}ms">
               <h3 class="text-[1.15rem] font-medium">${f.q}</h3>
-              <p class="mt-3 leading-relaxed text-gray-700">${fill(f.a, { calendly: link(CALENDLY) })}</p>
+              <p class="mt-3 leading-relaxed text-gray-700">${fill(f.a, { calendly: link(CALENDLY), aiskills: link(AISKILLS) })}</p>
             </article>`).join('\n')}
           </div>
         </div>
@@ -329,9 +332,11 @@ ${t.faq.items.map((f, i) => `            <article class="faq-item bg-white p-6" 
           <div class="flex-[47%] md:-mb-16 order-1" data-reveal style="--d: 150ms">
             <section class="bg-white w-full p-10 shadow-2xl">
               <h3 class="text-[clamp(1.5rem,4vmax,2.5rem)] leading-tight">${c.formH}</h3>
-              <form id="contact-form" class="mt-5 flex flex-col gap-4" data-recipient="sergej@kukshausen.me"
-                data-msg-thanks="${c.msgThanks}" data-msg-error="${c.msgError}" data-msg-mailto="${c.msgMailto}" data-msg-subject="${c.msgSubject}" novalidate>
-                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <form id="contact-form" class="mt-5 flex flex-col gap-4"${ACCESS_KEY ? ' method="post" action="https://api.web3forms.com/submit"' : ' method="post" action="mailto:sergej@kukshausen.me" enctype="text/plain"'} data-recipient="sergej@kukshausen.me"
+                data-msg-thanks="${c.msgThanks}" data-msg-error="${c.msgError}" data-msg-mailto="${c.msgMailto}" data-msg-subject="${c.msgSubject}">
+${ACCESS_KEY ? `                <input type="hidden" name="access_key" value="${ACCESS_KEY}" />
+                <input type="hidden" name="from_name" value="kukshausen.me" />
+` : ''}                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="flex flex-col gap-1">
                   <label for="name" class="w-fit required">${c.name}</label>
                   <input id="name" name="name" type="text" required autocomplete="name" placeholder="${c.namePh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 placeholder:font-light outline-none" />

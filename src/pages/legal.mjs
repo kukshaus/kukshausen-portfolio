@@ -9,9 +9,10 @@ export function renderLegal(t, kind) {
     '@context': 'https://schema.org',
     '@graph': [
       { '@type': 'WebSite', '@id': `${SITE}#website`, url: SITE, name: 'Sergej Kukshausen' },
+      { '@type': 'Person', '@id': `${SITE}#person`, name: 'Sergej Kukshausen', url: SITE },
       {
         '@type': 'WebPage', '@id': `${url}#webpage`, url, name: doc.title.replace(/&amp;/g, '&'), inLanguage: t.lang,
-        ...(kind === 'privacy' ? { dateModified: '2026-10-17' } : {}),
+        ...(kind === 'privacy' ? { dateModified: '2026-10-16' } : {}),
         isPartOf: { '@id': `${SITE}#website` }, about: { '@id': `${SITE}#person` },
       },
     ],
