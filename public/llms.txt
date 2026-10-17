@@ -49,6 +49,9 @@
 ## Pages
 
 - [Homepage](https://sergej.kukshausen.me/): services, impact cases, how we'd work together, about, toolkit, FAQ, contact
+- [Startseite (Deutsch)](https://sergej.kukshausen.me/de/)
+- [Главная (Русский)](https://sergej.kukshausen.me/ru/)
+- [Kezdőlap (Magyar)](https://sergej.kukshausen.me/hu/)
 - [CV (PDF)](https://sergej.kukshausen.me/Sergej_Kukshausen_CV.pdf): downloadable résumé
 - [Imprint / Impressum](https://sergej.kukshausen.me/imprint.html)
 - [Privacy Policy / Datenschutz](https://sergej.kukshausen.me/privacy.html)
@@ -59,4 +62,4 @@
 - Recruitment and professional networking tools: ALLOWED and welcome
 - Impersonation or misrepresentation: NOT ALLOWED
 
-Last updated: 2026-10-16
+Last updated: 2026-10-17

@@ -161,19 +161,19 @@ function wireContactForm(): void {
     const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
     // Honeypot: real visitors never see this field, bots fill it in.
     if (data.botcheck) {
-      say("Thanks for reaching out! I'll be in contact soon.", true);
+      say(form.dataset.msgThanks ?? 'Thanks!', true);
       form.reset();
       return;
     }
     delete data.botcheck;
 
     if (!endpoint) {
-      const subject = encodeURIComponent(`Website message from ${data.name}: ${data.topic ?? ''}`);
+      const subject = encodeURIComponent(`${form.dataset.msgSubject ?? 'Website message from'} ${data.name}: ${data.topic ?? ''}`);
       const body = encodeURIComponent(
         `${data.message}\n\n—\n${data.name}\n${data.email}${data.phone ? `\n${data.phone}` : ''}\nTopic: ${data.topic ?? ''}`,
       );
       window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-      say('Opening your mail app with the message prefilled.', true);
+      say(form.dataset.msgMailto ?? '', true);
       return;
     }
 
@@ -184,16 +184,16 @@ function wireContactForm(): void {
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(
           accessKey
-            ? { access_key: accessKey, subject: `Website message from ${data.name}: ${data.topic ?? ''}`, from_name: 'kukshausen.me', ...data }
+            ? { access_key: accessKey, subject: `Website message from ${data.name} [${document.documentElement.lang}]: ${data.topic ?? ''}`, from_name: 'kukshausen.me', ...data }
             : data,
         ),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      say("Thanks for reaching out! I'll be in contact soon.", true);
+      say(form.dataset.msgThanks ?? 'Thanks!', true);
       form.reset();
     } catch (error) {
       console.error('Error sending message:', error);
-      say('Failed to send message. Please try again later or contact me directly via email.', false);
+      say(form.dataset.msgError ?? 'Failed to send message.', false);
     } finally {
       if (submit) submit.disabled = false;
     }
