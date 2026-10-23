@@ -10,9 +10,6 @@ const SKILLS = [
   ['retool', 'Retool'], ['swift', 'Swift'], ['selenium', 'Selenium'], ['drupal', 'Drupal'], ['redmine', 'Redmine'],
 ];
 
-const STATS = [
-  [11, '+'], [31, '%'], [21, '%'], [75, '%'],
-];
 
 const FLAGS = {
   de: '<svg class="flag" viewBox="0 0 3 2" aria-hidden="true"><rect width="3" height="2" fill="#000"/><rect y="0.667" width="3" height="1.333" fill="#DD0000"/><rect y="1.333" width="3" height="0.667" fill="#FFCE00"/></svg>',
@@ -94,7 +91,6 @@ function schema(t) {
 export function renderHome(t) {
   const root = toRoot(t.lang);
   const c = t.contact;
-  const stepLabel = (n) => (t.lang === 'hu' ? `${n}. ${t.process.step}` : `${t.process.step} ${n}`);
 
   return `<!doctype html>
 <html lang="${t.lang}" class="scroll-smooth">
@@ -155,14 +151,9 @@ ${header(t, { page: '', anchors: true })}
               <a href="${CALENDLY}" target="_blank" rel="noopener" class="cta text-white bg-[#073E29] px-5 py-3 font-bold inline-block">${t.hero.cta}</a>
               <a href="${root}Sergej_Kukshausen_CV.pdf" download="Sergej_Kukshausen_CV.pdf" class="cta-secondary px-5 py-3 font-bold inline-block">${t.hero.cv}</a>
             </div>
-            <dl class="stats mt-6 grid grid-cols-4 gap-2 sm:gap-4">
-${STATS.map(([n, suffix], i) => `              <div class="flex flex-col">
-                <dt class="text-sm text-gray-700">${t.hero.stats[i]}</dt>
-                <dd class="stat-value mt-auto text-[2rem] font-semibold text-[#073E29]" data-count="${n}" data-suffix="${suffix}">${n}${suffix}</dd>
-              </div>`).join('\n')}
-            </dl>
+            <p class="mt-6 text-base leading-relaxed border-l-2 border-[#073E29] pl-4">${t.hero.proof} <a href="#projects" class="underline underline-offset-4 text-[#073E29] whitespace-nowrap">${t.hero.proofLink}</a></p>
             <p class="mt-4 text-sm text-gray-700">
-              <span class="avail-dot" aria-hidden="true"></span>${t.hero.available} · ${t.hero.updated} <time datetime="2026-10-16">${t.dateLong}</time>
+              <span class="avail-dot" aria-hidden="true"></span>${t.hero.available} · ${t.hero.updated} <time datetime="2026-10-23">${t.dateLong}</time>
             </p>
           </div>
 
@@ -213,13 +204,13 @@ ${t.work.items.map((w, i) => `            <article class="card flex flex-col ite
       <section id="process" class="px-5 py-[5rem] bg-[#F7F9F4] scroll-mt-[6rem]">
         <div class="mx-auto max-w-[1170px]">
           <h2 class="text-[2.5rem] leading-tight text-center mb-10" data-reveal>${t.process.h2}</h2>
-          <ol class="grid grid-cols-1 md:grid-cols-3 gap-4">
-${t.process.steps.map((s, i) => `            <li class="step bg-white p-8" data-reveal style="--d: ${i * 100}ms">
-              <p class="text-sm font-semibold tracking-wide text-[#073E29]">${stepLabel(i + 1)}</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+${t.process.steps.map((s, i) => `            <article class="phase bg-white p-8" data-reveal style="--d: ${i * 100}ms">
+              <p class="text-sm font-semibold tracking-wide text-[#073E29]">${s.when}</p>
               <h3 class="text-[1.3rem] font-medium mt-1">${i === 0 ? `<a href="${CALENDLY}" target="_blank" rel="noopener" class="underline underline-offset-4 decoration-[#073E29]/40 hover:decoration-[#073E29]">${s.title}</a>` : s.title}</h3>
               <p class="mt-2 leading-relaxed">${s.text}</p>
-            </li>`).join('\n')}
-          </ol>
+            </article>`).join('\n')}
+          </div>
           <p class="mt-8 text-center text-gray-700" data-reveal style="--d: 300ms">${fill(t.process.contracting, {
             malt: [`<a href="${MALT}" target="_blank" rel="noopener me" class="underline underline-offset-4 text-[#073E29]">Malt</a>`],
             upwork: [`<a href="${UPWORK}" target="_blank" rel="noopener me" class="underline underline-offset-4 text-[#073E29]">Upwork</a>`],

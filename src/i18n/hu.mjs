@@ -3,7 +3,7 @@
 export default {
   lang: 'hu',
   ogLocale: 'hu_HU',
-  dateLong: '2026. október 16.',
+  dateLong: '2026. október 23.',
 
   meta: {
     title: 'Sergej Kukshausen | Szoftverfejlesztési vezető és tanácsadó',
@@ -29,7 +29,8 @@ export default {
     sub: 'Több mint 11 év szoftverfejlesztés, ebből az utóbbi nyolc a bank- és fintech szektorban. Belsős vezető a Fiservnél, emellett nyitott fractional engineering vezetésre, mainframe–AWS migrációkra és AI skillek fejlesztésére fejlesztőcsapatok számára.',
     cta: 'Foglaljon 20 perces hívást',
     cv: 'Önéletrajz letöltése (PDF)',
-    stats: ['Év szoftverfejlesztés', 'Alacsonyabb infraköltség', 'Gyorsabb bevezetés', 'Kevesebb manuális munka'],
+    proof: 'Legutóbb a Fiservnél vezettem egy fizetési útválasztó platform migrációját mainframe-ről AWS-re, 31%-kal alacsonyabb infrastruktúraköltséggel.',
+    proofLink: 'A projekt',
     available: 'Nyitott új megbízásokra',
     updated: 'Frissítve',
     portraitAlt: 'Sergej Kukshausen, Engineering Manager, portré',
@@ -110,17 +111,19 @@ export default {
 
   process: {
     h2: 'Hogyan dolgoznánk együtt',
-    step: 'LÉPÉS',
     steps: [
       {
-        title: '20 perces hívás',
+        when: '20 perc',
+        title: 'Bemutatkozó hívás',
         text: 'Ön bemutatja a csapatot vagy a rendszert, én pedig őszintén megmondom, hogy én vagyok-e a megfelelő ember, és mit vizsgálnék meg elsőként.',
       },
       {
-        title: '1–2 hetes felmérés',
+        when: '1–2 hét',
+        title: 'Felmérés',
         text: 'Interjúk, kód- és folyamat-review, majd írásos javaslat prioritásokkal és reális tervvel.',
       },
       {
+        when: '3–6 hónap',
         title: 'Megbízás',
         text: 'Jellemzően 3–6 hónap, heti 2–5 nap, remote vagy helyszínen a DACH-régióban. A napidíjat kérésre megadom.',
       },

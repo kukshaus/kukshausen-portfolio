@@ -3,7 +3,7 @@
 export default {
   lang: 'en',
   ogLocale: 'en_GB',
-  dateLong: '16 October 2026',
+  dateLong: '23 October 2026',
 
   meta: {
     title: 'Sergej Kukshausen | Engineering Manager &amp; Fractional Tech Lead',
@@ -29,7 +29,8 @@ export default {
     sub: '11+ years of software delivery, the last eight in banking and fintech. In-house at Fiserv, and open to fractional engineering leadership, mainframe-to-AWS migrations and AI-skills work for development teams.',
     cta: 'Book a 20-min call',
     cv: 'Download CV (PDF)',
-    stats: ['Years delivering', 'Lower infra cost', 'Faster launches', 'Less manual work'],
+    proof: 'Most recently I led the migration of a payment routing platform at Fiserv from mainframe to AWS, with 31% lower infrastructure cost.',
+    proofLink: 'See the work',
     available: 'Open to new engagements',
     updated: 'Updated',
     portraitAlt: 'Sergej Kukshausen, Engineering Manager, portrait',
@@ -110,17 +111,19 @@ export default {
 
   process: {
     h2: "How we'd work together",
-    step: 'STEP',
     steps: [
       {
-        title: '20-minute call',
+        when: '20 minutes',
+        title: 'Intro call',
         text: 'You describe the team or system, I tell you honestly whether I am the right person and what I would look at first.',
       },
       {
-        title: '1 to 2 week assessment',
+        when: '1 to 2 weeks',
+        title: 'Assessment',
         text: 'Interviews, code and process review, then a written recommendation with priorities and a realistic plan.',
       },
       {
+        when: '3 to 6 months',
         title: 'Engagement',
         text: 'Typically 3 to 6 months at 2 to 5 days a week, remote or on-site in DACH. Day rate on request.',
       },

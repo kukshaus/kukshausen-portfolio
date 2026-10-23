@@ -3,7 +3,7 @@
 export default {
   lang: 'de',
   ogLocale: 'de_DE',
-  dateLong: '16. Oktober 2026',
+  dateLong: '23. Oktober 2026',
 
   meta: {
     title: 'Sergej Kukshausen | Interim Engineering Manager (Fintech)',
@@ -29,7 +29,8 @@ export default {
     sub: 'Über 11 Jahre Software-Delivery, die letzten acht davon in Banking und Fintech. Festangestellt bei Fiserv und offen für Fractional Engineering Leadership, Mainframe-zu-AWS-Migrationen und KI-Skills für Entwicklungsteams.',
     cta: '20-Minuten-Gespräch buchen',
     cv: 'Lebenslauf herunterladen (PDF)',
-    stats: ['Jahre Delivery', 'Geringere Infrakosten', 'Schnellere Launches', 'Weniger manuelle Arbeit'],
+    proof: 'Zuletzt habe ich bei Fiserv die Migration einer Payment-Routing-Plattform vom Mainframe auf AWS geleitet, mit 31 % geringeren Infrastrukturkosten.',
+    proofLink: 'Zum Projekt',
     available: 'Offen für neue Mandate',
     updated: 'Aktualisiert',
     portraitAlt: 'Sergej Kukshausen, Engineering Manager, Porträt',
@@ -110,17 +111,19 @@ export default {
 
   process: {
     h2: 'So läuft die Zusammenarbeit',
-    step: 'SCHRITT',
     steps: [
       {
-        title: '20-minütiges Gespräch',
+        when: '20 Minuten',
+        title: 'Kennenlerngespräch',
         text: 'Sie beschreiben Ihr Team oder System, ich sage Ihnen ehrlich, ob ich der Richtige bin und was ich mir zuerst ansehen würde.',
       },
       {
-        title: 'Analyse in 1 bis 2 Wochen',
+        when: '1 bis 2 Wochen',
+        title: 'Analyse',
         text: 'Interviews, Code- und Prozess-Review, danach eine schriftliche Empfehlung mit Prioritäten und einem realistischen Plan.',
       },
       {
+        when: '3 bis 6 Monate',
         title: 'Mandat',
         text: 'In der Regel 3 bis 6 Monate mit 2 bis 5 Tagen pro Woche, remote oder vor Ort in der DACH-Region. Tagessatz auf Anfrage.',
       },

@@ -288,10 +288,6 @@ body * {
 }
 
 /* Stat strip under the hero copy. */
-.stat-value {
-  font-variant-numeric: tabular-nums;
-}
-
 /* Skill icon hover lift. */
 .skill img {
   transition:
@@ -474,7 +470,7 @@ body * {
 .svc h3 {
   color: var(--green);
 }
-.step {
+.phase {
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.06);
 }
 .faq summary {
@@ -578,7 +574,3 @@ select.field {
   color: var(--green);
 }
 
-.stats dt {
-  hyphens: auto;
-  overflow-wrap: anywhere;
-}

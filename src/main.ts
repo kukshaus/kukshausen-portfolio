@@ -50,35 +50,6 @@ function observeReveals(): void {
   targets.forEach((el) => observer.observe(el));
 }
 
-/** Count stat numbers up from zero the first time they become visible. */
-function animateCounters(): void {
-  const counters = document.querySelectorAll<HTMLElement>('[data-count]');
-  const run = (el: HTMLElement) => {
-    const target = Number(el.dataset.count);
-    const suffix = el.dataset.suffix ?? '';
-    const duration = 1400;
-    const start = performance.now();
-    const step = (now: number) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = `${Math.round(target * eased)}${suffix}`;
-      if (t < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  };
-  // The HTML ships the final numbers; only reset to 0 when the count-up will actually run.
-  if (reduceMotion || !('IntersectionObserver' in window)) return;
-  counters.forEach((el) => (el.textContent = `0${el.dataset.suffix ?? ''}`));
-  const observer = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      run(entry.target as HTMLElement);
-      observer.unobserve(entry.target);
-    }
-  });
-  counters.forEach((el) => observer.observe(el));
-}
-
 /** Portrait tilts toward the cursor while it moves over the hero. */
 function trackPortrait(): void {
   const hero = document.querySelector<HTMLElement>('#intro');
@@ -206,7 +177,6 @@ function wireContactForm(): void {
 
 splitHeadlineWords();
 observeReveals();
-animateCounters();
 trackPortrait();
 magnetiseButtons();
 trackScrollProgress();

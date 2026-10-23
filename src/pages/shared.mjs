@@ -84,7 +84,7 @@ ${item('contact', t.nav.contact)}
 
 export function footer(t) {
   return `    <footer class="site-footer" role="contentinfo">
-      <div>&copy; 2026 Sergej Kukshausen · ${t.footer.updated} <time datetime="2026-10-16">${t.dateLong}</time></div>
+      <div>&copy; 2026 Sergej Kukshausen · ${t.footer.updated} <time datetime="2026-10-23">${t.dateLong}</time></div>
       <div class="links">
         <a href="imprint.html">${t.footer.imprint}</a>
         <a href="privacy.html">${t.footer.privacy}</a>
