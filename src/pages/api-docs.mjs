@@ -1,7 +1,39 @@
 // Documentation page of the content API at /api/. Not linked from the site, not in the sitemap, noindex.
 // Rendered from the OpenAPI document; src/api-docs.ts adds the language switch and the "Send request" buttons.
-import { LANGS, LANG_NAMES } from './shared.mjs';
+import { SITE, LANGS, LANG_NAMES } from './shared.mjs';
 import { ENDPOINTS, SERVER, openapi } from '../api/openapi.mjs';
+import { TOOL_SUMMARIES } from '../../server/mcp.mjs';
+
+const MCP = `${SITE}mcp`;
+
+function mcpSection() {
+  return `      <section id="mcp" class="api-endpoint">
+        <h2>MCP server</h2>
+        <p>The same content as tools for AI agents, over the Model Context Protocol. Read-only, no sign-in, Streamable HTTP.</p>
+        <dl class="api-facts">
+          <dt>Endpoint</dt><dd><code>${MCP}</code></dd>
+          <dt>Server card</dt><dd><a href="../mcp/server-card">${MCP}/server-card</a></dd>
+          <dt>AI catalog</dt><dd><a href="../.well-known/ai-catalog.json">${SITE}.well-known/ai-catalog.json</a></dd>
+        </dl>
+        <h3 class="api-sub">Connect</h3>
+        <pre class="api-curl"><code># Claude Code
+claude mcp add --transport http sergej-kukshausen ${MCP}
+
+# Claude.ai / Claude Desktop: Settings → Connectors → Add custom connector → ${MCP}
+# ChatGPT: Settings → Apps &amp; Connectors → Create → ${MCP} (no authentication)
+
+# Any client with a JSON config
+{ "mcpServers": { "sergej-kukshausen": { "type": "http", "url": "${MCP}" } } }</code></pre>
+        <h3 class="api-sub">Tools</h3>
+        <table class="api-fields">
+          <thead><tr><th>Tool</th><th>Description</th></tr></thead>
+          <tbody>
+${TOOL_SUMMARIES.map((t) => `            <tr><td><code>${esc(t.name)}</code></td><td>${esc(t.description)}</td></tr>`).join('\n')}
+          </tbody>
+        </table>
+        <p>Every tool takes <code>lang</code> (<code>en</code>, <code>de</code>, <code>ru</code>, <code>hu</code>). Each REST resource is also an MCP resource under its URL, e.g. <code>${SERVER}/en/profile.json</code>.</p>
+      </section>`;
+}
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -102,6 +134,7 @@ ${LANGS.map((l) => `          <option value="${l}">${l} · ${LANG_NAMES[l]}</opt
     <div class="api-layout">
       <nav class="api-nav" aria-label="Endpoints">
         <a href="#overview">Overview</a>
+        <a href="#mcp">MCP server</a>
 ${list.map((e) => `        <a href="#${e.id}">${esc(e.summary)}</a>`).join('\n')}
       </nav>
 
@@ -120,6 +153,8 @@ ${list.map((e) => `        <a href="#${e.id}">${esc(e.summary)}</a>`).join('\n')
         <pre class="api-curl"><code>curl --compressed ${SERVER}/en/profile.json
 curl ${SERVER}/de/faq.json | jq '.data.items[].question'</code></pre>
       </section>
+
+${mcpSection()}
 
 ${list.map((e) => endpoint(e, components)).join('\n\n')}
       </main>

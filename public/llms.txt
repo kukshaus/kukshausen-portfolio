@@ -46,6 +46,13 @@
 - Xing: https://www.xing.com/profile/Sergej_Kukshausen
 - GitHub: https://github.com/kukshaus
 
+## For AI agents: MCP server
+
+- Endpoint: https://sergej.kukshausen.me/mcp (Streamable HTTP, read-only, no authentication)
+- Tools: get_profile, list_services, list_projects, get_engagement_process, list_skills, get_contact, search_faq; every tool takes lang (en, de, ru, hu)
+- Server card: https://sergej.kukshausen.me/mcp/server-card
+- AI catalog: https://sergej.kukshausen.me/.well-known/ai-catalog.json
+
 ## Pages
 
 - [Homepage](https://sergej.kukshausen.me/): services, impact cases, how we'd work together, about, toolkit, FAQ, contact
@@ -62,4 +69,4 @@
 - Recruitment and professional networking tools: ALLOWED and welcome
 - Impersonation or misrepresentation: NOT ALLOWED
 
-Last updated: 2026-10-17
+Last updated: 2026-10-26

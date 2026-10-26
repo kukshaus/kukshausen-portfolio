@@ -1,7 +1,10 @@
-// Renders the content API: api/v1/index.json, api/v1/openapi.json and api/v1/{lang}/{resource}.json.
-// Returns { 'api/v1/…json': body }. Vite emits these into dist/ and serves them in `npm run dev`.
+// Renders the content API: api/v1/index.json, api/v1/openapi.json and api/v1/{lang}/{resource}.json,
+// plus the MCP discovery files: mcp/server-card.json (served at /mcp/server-card) and .well-known/ai-catalog.json.
+// Returns { 'path/file.json': body }. Vite emits these into dist/ and serves them in `npm run dev`.
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { SUPPORTED_PROTOCOL_VERSIONS } from '@modelcontextprotocol/sdk/types.js';
+import { SERVER_INFO } from '../server/mcp.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -30,6 +33,44 @@ export async function renderApi() {
     openapi: `${SITE}${API_BASE}openapi.json`,
     docs: `${SITE}api/`,
   });
+
+  // MCP Server Card (SEP-2127) and the domain's AI Catalog pointing to it.
+  const mcpUrl = `${SITE}mcp`;
+  const card = {
+    $schema: 'https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json',
+    name: 'me.kukshausen/sergej',
+    version: SERVER_INFO.version,
+    title: SERVER_INFO.title,
+    description: 'Profile, services, projects, FAQ and contact of Sergej Kukshausen, in 4 languages',
+    websiteUrl: SITE,
+    icons: [
+      { src: `${SITE}favicon.svg`, mimeType: 'image/svg+xml', sizes: ['any'] },
+      { src: `${SITE}icon-512.png`, mimeType: 'image/png', sizes: ['512x512'] },
+    ],
+    // Streamable HTTP exists since 2025-03-26; older versions only spoke HTTP+SSE.
+    remotes: [{ type: 'streamable-http', url: mcpUrl, supportedProtocolVersions: SUPPORTED_PROTOCOL_VERSIONS.filter((v) => v >= '2025-03-26') }],
+  };
+  if (card.description.length > 100) throw new Error(`server card: description is ${card.description.length} chars, max 100`);
+  files['mcp/server-card.json'] = `${JSON.stringify(card, null, 2)}\n`;
+  files['.well-known/ai-catalog.json'] = `${JSON.stringify(
+    {
+      specVersion: '1.0',
+      host: { displayName: 'Sergej Kukshausen', identifier: 'did:web:sergej.kukshausen.me', documentationUrl: SITE },
+      entries: [
+        {
+          identifier: 'urn:air:kukshausen.me:mcp:sergej',
+          displayName: SERVER_INFO.title,
+          type: 'application/mcp-server-card+json',
+          description: card.description,
+          tags: ['engineering-management', 'fintech', 'consulting', 'portfolio'],
+          url: `${mcpUrl}/server-card`,
+          updatedAt: `${UPDATED}T00:00:00Z`,
+        },
+      ],
+    },
+    null,
+    2,
+  )}\n`;
   return files;
 }
 

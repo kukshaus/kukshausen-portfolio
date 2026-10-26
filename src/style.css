@@ -663,6 +663,20 @@ select.field {
   font-size: 0.875em;
   overflow-wrap: anywhere;
 }
+.api-endpoint p a,
+.api-facts a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.api-fields td:first-child code {
+  white-space: nowrap;
+}
+.api-sub {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
 .api-route {
   display: flex;
   gap: 0.5rem;

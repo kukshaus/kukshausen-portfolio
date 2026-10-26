@@ -22,7 +22,7 @@ function i18nPages(): Plugin {
   };
 }
 
-// The content API: static JSON under api/v1/, emitted into dist/ and served by the dev server.
+// The content API (static JSON under api/v1/) and the MCP discovery files, emitted into dist/ and served by the dev server.
 function apiFiles(): Plugin {
   return {
     name: 'api-files',
@@ -33,8 +33,9 @@ function apiFiles(): Plugin {
     },
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        const path = (req.url ?? '').split('?')[0].replace(/^\//, '');
-        if (!path.startsWith('api/v1/')) return next();
+        let path = (req.url ?? '').split('?')[0].replace(/^\//, '');
+        if (path === 'mcp/server-card') path = 'mcp/server-card.json';
+        if (!/^(api\/v1\/|mcp\/|\.well-known\/ai-catalog)/.test(path)) return next();
         const body = (await renderApi())[path];
         if (body === undefined) return next();
         res.setHeader('Content-Type', 'application/json; charset=utf-8');
