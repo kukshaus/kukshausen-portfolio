@@ -15,6 +15,9 @@ export function loadContent(dir) {
     }
     content[lang] = all;
   }
+  // The CV is English only: api/v1/cv.json and cv.md next to the language folders.
+  content.cv = JSON.parse(readFileSync(join(dir, 'cv.json'), 'utf8'));
+  content.cvMarkdown = readFileSync(join(dir, 'cv.md'), 'utf8');
   return content;
 }
 

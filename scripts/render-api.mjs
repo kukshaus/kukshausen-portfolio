@@ -14,7 +14,8 @@ export async function renderApi() {
   const load = async (rel) => import(pathToFileURL(resolve(root, rel)).href + stamp);
   const { LANGS, SITE, UPDATED } = await load('src/pages/shared.mjs');
   const { API_BASE, API_VERSION, buildLanguage } = await load('src/api/resources.mjs');
-  const { ENDPOINTS, openapi } = await load('src/api/openapi.mjs');
+  const { ENDPOINTS, CV_DESCRIPTION, openapi } = await load('src/api/openapi.mjs');
+  const { cv, cvMarkdown } = await load('src/api/cv.mjs');
 
   const files = {};
   const put = (path, body) => (files[`${API_BASE}${path}`] = `${JSON.stringify(body)}\n`);
@@ -22,6 +23,8 @@ export async function renderApi() {
     const t = (await load(`src/i18n/${lang}.mjs`)).default;
     for (const [name, body] of Object.entries(buildLanguage(t))) put(`${lang}/${name}.json`, body);
   }
+  put('cv.json', cv());
+  files[`${API_BASE}cv.md`] = cvMarkdown();
   put('openapi.json', openapi());
   put('index.json', {
     name: 'Sergej Kukshausen content API',
@@ -29,7 +32,11 @@ export async function renderApi() {
     updated: UPDATED,
     languages: LANGS,
     defaultLanguage: 'en',
-    endpoints: ENDPOINTS.map((e) => ({ name: e.name, path: `/{lang}/${e.name}.json`, summary: e.description })),
+    endpoints: [
+      ...ENDPOINTS.map((e) => ({ name: e.name, path: `/{lang}/${e.name}.json`, summary: e.description })),
+      { name: 'cv', path: '/cv.json', summary: CV_DESCRIPTION },
+      { name: 'cv-markdown', path: '/cv.md', summary: 'The CV as Markdown. English only.' },
+    ],
     openapi: `${SITE}${API_BASE}openapi.json`,
     docs: `${SITE}api/`,
   });
@@ -41,7 +48,7 @@ export async function renderApi() {
     name: 'me.kukshausen/sergej',
     version: SERVER_INFO.version,
     title: SERVER_INFO.title,
-    description: 'Profile, services, projects, FAQ and contact of Sergej Kukshausen, in 4 languages',
+    description: 'Profile, CV, services, projects and FAQ of Sergej Kukshausen, plus booking an intro call',
     websiteUrl: SITE,
     icons: [
       { src: `${SITE}favicon.svg`, mimeType: 'image/svg+xml', sizes: ['any'] },

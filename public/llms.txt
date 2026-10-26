@@ -49,7 +49,8 @@
 ## For AI agents: MCP server
 
 - Endpoint: https://sergej.kukshausen.me/mcp (Streamable HTTP, no authentication)
-- Tools: get_profile, list_services, list_projects, get_engagement_process, list_skills, get_contact, search_faq; every content tool takes lang (en, de, ru, hu)
+- Tools: get_profile, list_services, list_projects, get_engagement_process, list_skills, get_contact, search_faq, get_cv, find_free_slots, book_intro_call; every content tool takes lang (en, de, ru, hu)
+- CV: get_cv returns the full CV as JSON or Markdown (English); also at https://sergej.kukshausen.me/api/v1/cv.json and https://sergej.kukshausen.me/api/v1/cv.md
 - Booking: find_free_slots and book_intro_call book the 20-minute intro call (Google Meet) via Calendly; book_intro_call needs confirm: true after the person agreed
 - Server card: https://sergej.kukshausen.me/mcp/server-card
 - AI catalog: https://sergej.kukshausen.me/.well-known/ai-catalog.json
@@ -61,6 +62,7 @@
 - [Главная (Русский)](https://sergej.kukshausen.me/ru/)
 - [Kezdőlap (Magyar)](https://sergej.kukshausen.me/hu/)
 - [CV (PDF)](https://sergej.kukshausen.me/Sergej_Kukshausen_CV.pdf): downloadable résumé
+- [CV (Markdown)](https://sergej.kukshausen.me/api/v1/cv.md): the same CV as plain Markdown
 - [Imprint / Impressum](https://sergej.kukshausen.me/imprint.html)
 - [Privacy Policy / Datenschutz](https://sergej.kukshausen.me/privacy.html)
 

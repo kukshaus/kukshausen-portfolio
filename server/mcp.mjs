@@ -13,8 +13,9 @@ export const SERVER_INFO = { name: 'sergej-kukshausen', title: 'Sergej Kukshause
 const SITE = 'https://sergej.kukshausen.me/';
 const MAX_BODY = 64 * 1024;
 
-const INSTRUCTIONS = `Public, read-only content of sergej.kukshausen.me: Sergej Kukshausen, Engineering Manager at Fiserv in Budapest, open to fractional engineering leadership, mainframe-to-AWS migrations and AI skills for dev teams.
-Every tool takes lang (en, de, ru, hu; default en). Ids, years and URLs are the same in every language.
+const INSTRUCTIONS = `Public content of sergej.kukshausen.me: Sergej Kukshausen, Engineering Manager at Fiserv in Budapest, open to fractional engineering leadership, mainframe-to-AWS migrations and AI skills for dev teams.
+Every content tool takes lang (en, de, ru, hu; default en). Ids, years and URLs are the same in every language.
+For the full CV (every job with highlights and stack, education, certifications), use get_cv; it is in English.
 To get in touch, use get_contact: it returns the email, phone and the link to book a 20-minute call.`;
 const BOOKING_INSTRUCTIONS = `
 To book the 20-minute intro call: find_free_slots, then book_intro_call without confirm to check the slot, show the person the details, and only after they agree call it again with confirm: true.`;
@@ -36,6 +37,11 @@ const SEARCH_FAQ = {
   title: 'Search the FAQ',
   description: 'Questions clients ask, with answers. Pass a query to rank the entries that contain its words; leave it out to get all of them.',
 };
+const GET_CV = {
+  name: 'get_cv',
+  title: 'CV',
+  description: 'The full CV: summary, expertise, every job with highlights and tech stack, education, certifications, languages and interests. English only. format "markdown" returns it as one Markdown document instead of JSON.',
+};
 const FIND_SLOTS = {
   name: 'find_free_slots',
   title: 'Find free slots',
@@ -48,7 +54,7 @@ const BOOK_CALL = {
     'Books the 20-minute intro call (Google Meet) at a start time from find_free_slots. Without confirm it only checks the slot and returns the details; show them to the person and call again with confirm: true only after they explicitly agree. Calendly then emails the invitation.',
 };
 /** Every tool, for the docs page. */
-export const TOOL_SUMMARIES = [...TOOLS.map(([name, , title, description]) => ({ name, title, description })), SEARCH_FAQ, FIND_SLOTS, BOOK_CALL];
+export const TOOL_SUMMARIES = [...TOOLS.map(([name, , title, description]) => ({ name, title, description })), SEARCH_FAQ, GET_CV, FIND_SLOTS, BOOK_CALL];
 
 const result = (body) => ({ content: [{ type: 'text', text: JSON.stringify(body) }], structuredContent: body });
 const failure = (message) => ({ content: [{ type: 'text', text: message }], isError: true });
@@ -127,6 +133,27 @@ export function buildServer(content, { booking, ip } = {}) {
       return result({ lang: l, updated: content[l].updated, data: { query: query ?? '', count: items.length, items } });
     },
   );
+
+  server.registerTool(
+    GET_CV.name,
+    {
+      title: GET_CV.title,
+      description: GET_CV.description,
+      inputSchema: { format: z.enum(['json', 'markdown']).default('json').describe('json (structured) or markdown (one document)') },
+      annotations: { title: GET_CV.title, ...READ_ONLY },
+    },
+    ({ format }) =>
+      format === 'markdown'
+        ? { content: [{ type: 'text', text: content.cvMarkdown }] }
+        : result(content.cv),
+  );
+
+  server.registerResource('cv', `${SITE}api/v1/cv.json`, { title: 'CV', description: 'The full CV as JSON, in English.', mimeType: 'application/json' }, (uri) => ({
+    contents: [{ uri: uri.href, mimeType: 'application/json', text: JSON.stringify(content.cv) }],
+  }));
+  server.registerResource('cv-markdown', `${SITE}api/v1/cv.md`, { title: 'CV (Markdown)', description: 'The full CV as Markdown, in English.', mimeType: 'text/markdown' }, (uri) => ({
+    contents: [{ uri: uri.href, mimeType: 'text/markdown', text: content.cvMarkdown }],
+  }));
 
   server.registerResource(
     'content',

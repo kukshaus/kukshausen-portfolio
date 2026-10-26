@@ -31,7 +31,7 @@ claude mcp add --transport http sergej-kukshausen ${MCP}
 ${TOOL_SUMMARIES.map((t) => `            <tr><td><code>${esc(t.name)}</code></td><td>${esc(t.description)}</td></tr>`).join('\n')}
           </tbody>
         </table>
-        <p>Every content tool takes <code>lang</code> (<code>en</code>, <code>de</code>, <code>ru</code>, <code>hu</code>). Each REST resource is also an MCP resource under its URL, e.g. <code>${SERVER}/en/profile.json</code>.</p>
+        <p>Every content tool except <code>get_cv</code> (English only) takes <code>lang</code> (<code>en</code>, <code>de</code>, <code>ru</code>, <code>hu</code>). Each REST resource is also an MCP resource under its URL, e.g. <code>${SERVER}/en/profile.json</code>.</p>
         <p>Booking asks twice: <code>book_intro_call</code> without <code>confirm</code> only checks the slot; the agent books with <code>confirm: true</code> after the person agrees. At most 3 bookings per client a day.</p>
       </section>`;
 }
@@ -104,6 +104,8 @@ export function renderApiDocs(files) {
         example: ['all', 'legal'].includes(e.name) ? null : read(path.replace('{lang}', 'en')),
       };
     }),
+    { id: 'cv', path: '/cv.json', summary: 'CV', description: spec.paths['/cv.json'].get.description, schema: spec.paths['/cv.json'].get.responses[200].content['application/json'].schema, example: read('/cv.json') },
+    { id: 'cv-markdown', path: '/cv.md', summary: 'CV as Markdown', description: spec.paths['/cv.md'].get.description, schema: { type: 'string' }, example: null },
     { id: 'index', path: '/index.json', summary: 'API index', description: spec.paths['/index.json'].get.description, schema: { $ref: '#/components/schemas/Index' }, example: read('/index.json') },
     { id: 'openapi', path: '/openapi.json', summary: 'OpenAPI document', description: 'This API as an OpenAPI 3.1 document, for code generators, Postman, Insomnia or an AI agent.', schema: { type: 'object' }, example: null },
   ];

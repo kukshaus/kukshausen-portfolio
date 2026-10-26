@@ -8,7 +8,7 @@ export const API_BASE = 'api/v1/';
 
 export const EMAIL = 'sergej@kukshausen.me';
 export const PHONE = '+36707871989';
-const LINKS = {
+export const LINKS = {
   linkedin: 'https://www.linkedin.com/in/sergej-kukshausen-099015163/',
   xing: 'https://www.xing.com/profile/Sergej_Kukshausen',
   github: 'https://github.com/kukshaus',

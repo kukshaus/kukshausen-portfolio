@@ -38,7 +38,7 @@ function apiFiles(): Plugin {
         if (!/^(api\/v1\/|mcp\/|\.well-known\/ai-catalog)/.test(path)) return next();
         const body = (await renderApi())[path];
         if (body === undefined) return next();
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
+        res.setHeader('Content-Type', path.endsWith('.md') ? 'text/markdown; charset=utf-8' : 'application/json; charset=utf-8');
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.end(body);
       });

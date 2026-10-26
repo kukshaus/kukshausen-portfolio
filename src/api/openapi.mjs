@@ -95,6 +95,35 @@ const SCHEMAS = {
     privacy: ref('LegalDocument'),
   }),
 };
+const ym = (description) => str(description, { pattern: '^\\d{4}-\\d{2}$' });
+SCHEMAS.Cv = obj({
+  name: str('Full name'),
+  title: str('Title on the CV'),
+  location: obj({ city: str('City'), country: str('ISO 3166-1 alpha-2 country code') }),
+  contact: obj({ email: str('Email address', { format: 'email' }), phone: str('Phone number in E.164 format'), linkedin: url('LinkedIn profile'), xing: url('Xing profile'), github: url('GitHub profile') }),
+  summary: str('Professional summary'),
+  expertise: arr(obj({ id: str('Stable id'), area: str('Area of expertise'), details: str('Skills in it') })),
+  experience: arr(obj({
+    id: str('Stable id'),
+    role: str('Job title'),
+    organization: str('Employer'),
+    location: str('Office location'),
+    from: ym('Start, YYYY-MM'),
+    to: { type: ['string', 'null'], pattern: '^\\d{4}-\\d{2}$', description: 'End, YYYY-MM; null for the current job' },
+    highlights: arr(obj({ topic: str('Topic'), text: str('What was done and the outcome') })),
+    stack: arr(str('Technology or tool')),
+  }), 'Jobs, newest first'),
+  education: arr(obj({ degree: str('Degree'), institution: str('University'), from: ym('Start, YYYY-MM'), to: ym('End, YYYY-MM'), thesis: str('Bachelor thesis') })),
+  certifications: arr(str('Certification')),
+  languages: arr(obj({
+    code: str('ISO 639-1 language code'),
+    name: str('Language'),
+    level: str('Proficiency', { enum: ['native', 'fluent', 'basic'] }),
+    cefr: { type: ['string', 'null'], description: 'CEFR level, null for native languages' },
+  })),
+  interests: arr(str('Interest')),
+  pdf: url('The CV as PDF'),
+});
 SCHEMAS.All = obj({
   profile: ref('Profile'), services: ref('Services'), projects: ref('Projects'), process: ref('Process'),
   faq: ref('Faq'), skills: ref('Skills'), contact: ref('Contact'), legal: ref('Legal'),
@@ -122,6 +151,9 @@ export const ENDPOINTS = [
   { name: 'legal', schema: 'Legal', summary: 'Imprint and privacy', description: 'Imprint and privacy policy, with the body as HTML.' },
   { name: 'all', schema: 'All', summary: 'Everything', description: 'All of the resources above in one response, keyed by resource name.' },
 ];
+
+/** The CV exists in English only, so it has no {lang} in its path. */
+export const CV_DESCRIPTION = 'The full CV as structured data: summary, expertise, every job with highlights and stack, education, certifications, languages and interests. English only.';
 
 export const SERVER = `${SITE}${API_BASE.replace(/\/$/, '')}`;
 
@@ -158,6 +190,27 @@ export function openapi() {
         description: 'Languages, endpoints and links to this document and the docs.',
         tags: ['Meta'],
         responses: { 200: ok(ref('Index'), 'The API index.'), ...COMMON },
+      },
+    },
+    '/cv.json': {
+      get: {
+        operationId: 'getCv',
+        summary: 'CV',
+        description: CV_DESCRIPTION,
+        tags: ['Content'],
+        responses: { 200: ok(envelope('Cv'), 'The CV, in English.'), ...COMMON },
+      },
+    },
+    '/cv.md': {
+      get: {
+        operationId: 'getCvMarkdown',
+        summary: 'CV as Markdown',
+        description: 'The same CV as one Markdown document, ready for an LLM or a README.',
+        tags: ['Content'],
+        responses: {
+          200: { description: 'The CV as Markdown.', headers: { ETag: { $ref: '#/components/headers/ETag' }, 'Cache-Control': { $ref: '#/components/headers/CacheControl' } }, content: { 'text/markdown': { schema: { type: 'string' } } } },
+          ...COMMON,
+        },
       },
     },
     '/openapi.json': {
