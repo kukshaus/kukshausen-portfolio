@@ -46,6 +46,10 @@
 - Xing: https://www.xing.com/profile/Sergej_Kukshausen
 - GitHub: https://github.com/kukshaus
 
+## For AI agents: Markdown
+
+- Every page is also available as Markdown: request it with the header Accept: text/markdown, or open the .md directly (https://sergej.kukshausen.me/index.md, /de/index.md, /imprint.md …)
+
 ## For AI agents: MCP server
 
 - Endpoint: https://sergej.kukshausen.me/mcp (Streamable HTTP, no authentication)

@@ -40,7 +40,8 @@ export function headCommon({ t, page, title, description, robots }) {
     <meta name="author" content="Sergej Kukshausen" />
     <link rel="canonical" href="${self}" />
 ${alternates}
-    <link rel="alternate" hreflang="x-default" href="${SITE}${page}" />`;
+    <link rel="alternate" hreflang="x-default" href="${SITE}${page}" />
+    <link rel="alternate" type="text/markdown" href="${SITE}${langDir(t.lang)}${page ? page.replace(/\.html$/, '.md') : 'index.md'}" />`;
 }
 
 export function langSwitcher(t, page) {
