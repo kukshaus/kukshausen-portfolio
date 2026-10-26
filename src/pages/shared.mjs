@@ -4,6 +4,8 @@ export const CALENDLY = 'https://calendly.com/sagei-lol/20-minute-meeting';
 export const MALT = 'https://www.malt.com/profile/sergejkukshausen';
 export const UPWORK = 'https://www.upwork.com/freelancers/~01a10ce5666c6d650f';
 export const LANGS = ['en', 'de', 'ru', 'hu'];
+/** Date the content was last updated, shown on the pages and returned by the API. */
+export const UPDATED = '2026-10-23';
 export const LANG_NAMES = { en: 'English', de: 'Deutsch', ru: 'Русский', hu: 'Magyar' };
 
 /** Folder of a language relative to the site root: '' for English, 'de/' etc. */
@@ -84,7 +86,7 @@ ${item('contact', t.nav.contact)}
 
 export function footer(t) {
   return `    <footer class="site-footer" role="contentinfo">
-      <div>&copy; 2026 Sergej Kukshausen · ${t.footer.updated} <time datetime="2026-10-23">${t.dateLong}</time></div>
+      <div>&copy; 2026 Sergej Kukshausen · ${t.footer.updated} <time datetime="${UPDATED}">${t.dateLong}</time></div>
       <div class="links">
         <a href="imprint.html">${t.footer.imprint}</a>
         <a href="privacy.html">${t.footer.privacy}</a>

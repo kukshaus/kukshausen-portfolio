@@ -1,7 +1,7 @@
 // Homepage template. Rendered once per language by scripts/render-pages.mjs.
-import { SITE, CALENDLY, MALT, UPWORK, langDir, toRoot, fill, headCommon, header, footer } from './shared.mjs';
+import { SITE, CALENDLY, MALT, UPWORK, UPDATED, langDir, toRoot, fill, headCommon, header, footer } from './shared.mjs';
 
-const SKILLS = [
+export const SKILLS = [
   ['python', 'Python'], ['bash', 'Bash'], ['java', 'Java'], ['php', 'PHP'], ['javascript', 'JavaScript'],
   ['typescript', 'TypeScript'], ['html5', 'HTML5'], ['css', 'CSS'], ['angular', 'Angular'], ['mysql', 'MySQL'],
   ['postgresql', 'PostgreSQL'], ['aws', 'AWS'], ['docker', 'Docker'], ['kubernetes', 'Kubernetes'],
@@ -19,7 +19,7 @@ const FLAGS = {
 };
 
 const LOCALES = ['en_GB', 'de_DE', 'ru_RU', 'hu_HU'];
-const AISKILLS = 'https://github.com/kukshaus/ai-skills';
+export const AISKILLS = 'https://github.com/kukshaus/ai-skills';
 const ACCESS_KEY = process.env.VITE_CONTACT_ACCESS_KEY ?? '';
 const link = (href, cls = 'underline underline-offset-4 text-[#073E29]') => [
   `<a href="${href}" target="_blank" rel="noopener" class="${cls}">`,
@@ -153,7 +153,7 @@ ${header(t, { page: '', anchors: true })}
             </div>
             <p class="mt-6 text-base leading-relaxed border-l-2 border-[#073E29] pl-4">${t.hero.proof} <a href="#projects" class="underline underline-offset-4 text-[#073E29] whitespace-nowrap">${t.hero.proofLink}</a></p>
             <p class="mt-4 text-sm text-gray-700">
-              <span class="avail-dot" aria-hidden="true"></span>${t.hero.available} · ${t.hero.updated} <time datetime="2026-10-23">${t.dateLong}</time>
+              <span class="avail-dot" aria-hidden="true"></span>${t.hero.available} · ${t.hero.updated} <time datetime="${UPDATED}">${t.dateLong}</time>
             </p>
           </div>
 
