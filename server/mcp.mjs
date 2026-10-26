@@ -8,6 +8,7 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { z } from 'zod';
 import { LANGS, RESOURCES, loadContent, resource, searchFaq } from './content.mjs';
 import { BookingError, createBooking, isTimeZone } from './booking.mjs';
+import { createNotifier } from './notify.mjs';
 
 export const SERVER_INFO = { name: 'sergej-kukshausen', title: 'Sergej Kukshausen', version: '1.0.0' };
 const SITE = 'https://sergej.kukshausen.me/';
@@ -76,7 +77,7 @@ async function bookingResult(run) {
   }
 }
 
-function registerBooking(server, booking, ip) {
+function registerBooking(server, booking, { ip, agent, topics }) {
   server.registerTool(
     FIND_SLOTS.name,
     {
@@ -101,17 +102,19 @@ function registerBooking(server, booking, ip) {
         name: z.string().trim().min(2).max(100).describe('Full name of the person booking'),
         email: z.email().max(200).describe('Email the invitation goes to'),
         timeZone,
-        notes: z.string().trim().max(1000).optional().describe('What the person wants to talk about'),
+        company: z.string().trim().max(120).optional().describe('Company or organization of the person, if they named one'),
+        topic: z.enum(topics.map((t) => t.id)).optional().describe(`What the call is about: ${topics.map((t) => `${t.id} (${t.label})`).join(', ')}`),
+        notes: z.string().trim().max(1000).optional().describe('Anything else that helps Sergej prepare: context, goals, questions'),
         confirm: z.boolean().default(false).describe('true only after the person agreed to the details from the unconfirmed call'),
       },
       annotations: { title: BOOK_CALL.title, readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
     },
-    (args) => bookingResult(() => booking.book({ ...args, ip })),
+    ({ topic, ...args }) => bookingResult(() => booking.book({ ...args, topic: topics.find((t) => t.id === topic)?.label, ip, agent })),
   );
 }
 
 /** A fresh McpServer for one request; registering the handful of tools costs microseconds. */
-export function buildServer(content, { booking, ip } = {}) {
+export function buildServer(content, { booking, ip, agent } = {}) {
   const server = new McpServer(SERVER_INFO, { instructions: booking ? INSTRUCTIONS + BOOKING_INSTRUCTIONS : INSTRUCTIONS });
 
   for (const [name, res, title, description] of TOOLS) {
@@ -175,7 +178,7 @@ export function buildServer(content, { booking, ip } = {}) {
     },
   );
 
-  if (booking) registerBooking(server, booking, ip);
+  if (booking) registerBooking(server, booking, { ip, agent, topics: content.en.data.contact.topics });
   return server;
 }
 
@@ -205,13 +208,26 @@ function clientIp(req) {
   return loopback && typeof header === 'string' && header ? header : peer;
 }
 
-export function startServer({ port, host, contentDir, calendlyToken }) {
+/** The client's User-Agent (e.g. "openai-mcp/1.0.0"), shortened, to tell which assistant booked. */
+const clientAgent = (req) => req.headers['user-agent']?.replace(/[^\x20-\x7e]/g, '').slice(0, 80) || undefined;
+
+export function startServer({ port, host, contentDir, calendlyToken, notify = {} }) {
   const content = loadContent(contentDir);
   const booking = calendlyToken ? createBooking({ token: calendlyToken }) : undefined;
-  console.log(`mcp: booking tools ${booking ? 'on' : 'off (no CALENDLY_TOKEN)'}`);
+  const notifier = notify.secret && notify.botToken && notify.chatId ? createNotifier(notify) : undefined;
+  console.log(`mcp: booking tools ${booking ? 'on' : 'off (no CALENDLY_TOKEN)'}, Telegram notifications ${notifier ? 'on' : 'off'}`);
   const http = createHttpServer(async (req, res) => {
     const { pathname } = new URL(req.url ?? '/', 'http://localhost');
     if (pathname === '/health') return sendJson(res, 200, { ok: true });
+    // Calendly webhook: booking and cancellation notifications, signed with the subscription's key.
+    if (pathname === '/hooks/calendly') {
+      if (!notifier) return sendJson(res, 404, { error: 'not_found' });
+      if (req.method !== 'POST') return sendJson(res, 405, { error: 'method_not_allowed' }, { Allow: 'POST' });
+      const raw = await readBody(req);
+      if (raw === null) return sendJson(res, 413, { error: 'too_large' });
+      const status = await notifier.handle(req.headers['calendly-webhook-signature'], raw);
+      return sendJson(res, status, { ok: status === 200 });
+    }
     if (pathname !== '/mcp') return sendJson(res, 404, rpcError(-32601, 'Not found: the MCP endpoint is /mcp'));
     // Stateless JSON mode: no server-initiated stream (GET) and no session to end (DELETE).
     if (req.method !== 'POST') return sendJson(res, 405, rpcError(-32000, 'Method not allowed: send JSON-RPC with POST'), { Allow: 'POST' });
@@ -225,7 +241,7 @@ export function startServer({ port, host, contentDir, calendlyToken }) {
       return sendJson(res, 400, rpcError(-32700, 'Parse error: the body is not JSON'));
     }
 
-    const server = buildServer(content, { booking, ip: clientIp(req) });
+    const server = buildServer(content, { booking, ip: clientIp(req), agent: clientAgent(req) });
     const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on('close', () => {
       void transport.close();
@@ -250,5 +266,10 @@ if (isMain || process.env.MCP_START === '1') {
     host: process.env.MCP_HOST ?? '127.0.0.1',
     contentDir: process.env.MCP_CONTENT_DIR ?? fileURLToPath(new URL('../dist/api/v1/', import.meta.url)),
     calendlyToken: process.env.CALENDLY_TOKEN?.trim(),
+    notify: {
+      secret: process.env.CALENDLY_WEBHOOK_SECRET?.trim(),
+      botToken: process.env.TELEGRAM_BOT_TOKEN?.trim(),
+      chatId: process.env.TELEGRAM_CHAT_ID?.trim(),
+    },
   });
 }

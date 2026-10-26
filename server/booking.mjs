@@ -121,12 +121,28 @@ export function createBooking({ token, fetch = globalThis.fetch, now = () => Dat
     if (ip && booked.filter((b) => b.ip === ip).length >= LIMITS.perIp) throw new BookingError('limit', 'This client already booked the maximum of calls for today');
   }
 
-  async function book({ start, name, email, timeZone = 'Europe/Budapest', notes, confirm = false, ip }) {
+  /** The booking form has one free-text question: company, topic and notes go into it together. */
+  const answer = ({ company, topic, notes, agent }) =>
+    [company && `Company: ${company}`, topic && `Topic: ${topic}`, notes, `Booked by an AI assistant over MCP${agent ? ` (${agent})` : ''}.`]
+      .filter(Boolean)
+      .join('\n');
+
+  async function book({ start, name, email, timeZone = 'Europe/Budapest', company, topic, notes, confirm = false, ip, agent }) {
     const t = Date.parse(start);
     const et = await getEventType();
     const times = await availableTimes(t - 60_000, t + 60_000, { fresh: true });
     if (!times.includes(t)) throw new BookingError('slot_taken', 'That time is not free: call find_free_slots for the current times');
-    const summary = { start: new Date(t).toISOString(), end: new Date(t + et.duration * 60_000).toISOString(), local: local(t, timeZone), timeZone, duration: et.duration, name, email };
+    const summary = {
+      start: new Date(t).toISOString(),
+      end: new Date(t + et.duration * 60_000).toISOString(),
+      local: local(t, timeZone),
+      timeZone,
+      duration: et.duration,
+      name,
+      email,
+      ...(company ? { company } : {}),
+      ...(topic ? { topic } : {}),
+    };
     if (!confirm) {
       return { status: 'needs_confirmation', ...summary, next: 'Show these details to the person. Only when they explicitly agree, call book_intro_call again with the same arguments and confirm: true.' };
     }
@@ -136,7 +152,9 @@ export function createBooking({ token, fetch = globalThis.fetch, now = () => Dat
       start_time: summary.start,
       invitee: { name, email, timezone: timeZone },
       location: { kind: 'google_conference' },
-      ...(notes && et.question ? { questions_and_answers: [{ question: et.question, answer: notes, position: 0 }] } : {}),
+      ...(et.question ? { questions_and_answers: [{ question: et.question, answer: answer({ company, topic, notes, agent }), position: 0 }] } : {}),
+      // Marks the booking as made over MCP; the webhook notification and Calendly's reports show it.
+      tracking: { utm_source: 'mcp', utm_medium: 'ai-agent', utm_campaign: null, utm_content: agent ?? null, utm_term: null, salesforce_uuid: null },
     };
     const invitee = (await call('/invitees', { method: 'POST', body: JSON.stringify(body) })).resource;
     booked.push({ ip, at: now() });
