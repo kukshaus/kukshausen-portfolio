@@ -48,8 +48,9 @@
 
 ## For AI agents: MCP server
 
-- Endpoint: https://sergej.kukshausen.me/mcp (Streamable HTTP, read-only, no authentication)
-- Tools: get_profile, list_services, list_projects, get_engagement_process, list_skills, get_contact, search_faq; every tool takes lang (en, de, ru, hu)
+- Endpoint: https://sergej.kukshausen.me/mcp (Streamable HTTP, no authentication)
+- Tools: get_profile, list_services, list_projects, get_engagement_process, list_skills, get_contact, search_faq; every content tool takes lang (en, de, ru, hu)
+- Booking: find_free_slots and book_intro_call book the 20-minute intro call (Google Meet) via Calendly; book_intro_call needs confirm: true after the person agreed
 - Server card: https://sergej.kukshausen.me/mcp/server-card
 - AI catalog: https://sergej.kukshausen.me/.well-known/ai-catalog.json
 

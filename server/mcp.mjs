@@ -7,6 +7,7 @@ import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mc
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { z } from 'zod';
 import { LANGS, RESOURCES, loadContent, resource, searchFaq } from './content.mjs';
+import { BookingError, createBooking, isTimeZone } from './booking.mjs';
 
 export const SERVER_INFO = { name: 'sergej-kukshausen', title: 'Sergej Kukshausen', version: '1.0.0' };
 const SITE = 'https://sergej.kukshausen.me/';
@@ -15,6 +16,8 @@ const MAX_BODY = 64 * 1024;
 const INSTRUCTIONS = `Public, read-only content of sergej.kukshausen.me: Sergej Kukshausen, Engineering Manager at Fiserv in Budapest, open to fractional engineering leadership, mainframe-to-AWS migrations and AI skills for dev teams.
 Every tool takes lang (en, de, ru, hu; default en). Ids, years and URLs are the same in every language.
 To get in touch, use get_contact: it returns the email, phone and the link to book a 20-minute call.`;
+const BOOKING_INSTRUCTIONS = `
+To book the 20-minute intro call: find_free_slots, then book_intro_call without confirm to check the slot, show the person the details, and only after they agree call it again with confirm: true.`;
 
 const lang = z.enum(LANGS).default('en').describe('Language of the text fields: en, de, ru or hu');
 const READ_ONLY = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
@@ -33,14 +36,77 @@ const SEARCH_FAQ = {
   title: 'Search the FAQ',
   description: 'Questions clients ask, with answers. Pass a query to rank the entries that contain its words; leave it out to get all of them.',
 };
+const FIND_SLOTS = {
+  name: 'find_free_slots',
+  title: 'Find free slots',
+  description: 'Free start times for the 20-minute intro call with Sergej, from Calendly. Pass a date for one day, or days for the coming days (default 7).',
+};
+const BOOK_CALL = {
+  name: 'book_intro_call',
+  title: 'Book the intro call',
+  description:
+    'Books the 20-minute intro call (Google Meet) at a start time from find_free_slots. Without confirm it only checks the slot and returns the details; show them to the person and call again with confirm: true only after they explicitly agree. Calendly then emails the invitation.',
+};
 /** Every tool, for the docs page. */
-export const TOOL_SUMMARIES = [...TOOLS.map(([name, , title, description]) => ({ name, title, description })), SEARCH_FAQ];
+export const TOOL_SUMMARIES = [...TOOLS.map(([name, , title, description]) => ({ name, title, description })), SEARCH_FAQ, FIND_SLOTS, BOOK_CALL];
 
 const result = (body) => ({ content: [{ type: 'text', text: JSON.stringify(body) }], structuredContent: body });
+const failure = (message) => ({ content: [{ type: 'text', text: message }], isError: true });
+const timeZone = z
+  .string()
+  .max(64)
+  .refine(isTimeZone, 'Not an IANA time zone')
+  .default('Europe/Budapest')
+  .describe('IANA time zone of the person, e.g. Europe/Berlin; times are shown in it');
+
+/** Runs a booking call; Calendly and limit errors become tool errors the agent can act on. */
+async function bookingResult(run) {
+  try {
+    return result(await run());
+  } catch (error) {
+    if (error instanceof BookingError) return failure(error.message);
+    console.error('booking:', error);
+    return failure('Booking is not available right now');
+  }
+}
+
+function registerBooking(server, booking, ip) {
+  server.registerTool(
+    FIND_SLOTS.name,
+    {
+      title: FIND_SLOTS.title,
+      description: FIND_SLOTS.description,
+      inputSchema: {
+        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'YYYY-MM-DD').optional().describe('One day, YYYY-MM-DD, in the given time zone'),
+        days: z.number().int().min(1).max(14).default(7).describe('Number of days from now, when no date is given'),
+        timeZone,
+      },
+      annotations: { title: FIND_SLOTS.title, readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: true },
+    },
+    (args) => bookingResult(() => booking.findSlots(args)),
+  );
+  server.registerTool(
+    BOOK_CALL.name,
+    {
+      title: BOOK_CALL.title,
+      description: BOOK_CALL.description,
+      inputSchema: {
+        start: z.iso.datetime({ offset: true }).describe('Start time exactly as returned by find_free_slots'),
+        name: z.string().trim().min(2).max(100).describe('Full name of the person booking'),
+        email: z.email().max(200).describe('Email the invitation goes to'),
+        timeZone,
+        notes: z.string().trim().max(1000).optional().describe('What the person wants to talk about'),
+        confirm: z.boolean().default(false).describe('true only after the person agreed to the details from the unconfirmed call'),
+      },
+      annotations: { title: BOOK_CALL.title, readOnlyHint: false, destructiveHint: false, idempotentHint: false, openWorldHint: true },
+    },
+    (args) => bookingResult(() => booking.book({ ...args, ip })),
+  );
+}
 
 /** A fresh McpServer for one request; registering the handful of tools costs microseconds. */
-export function buildServer(content) {
-  const server = new McpServer(SERVER_INFO, { instructions: INSTRUCTIONS });
+export function buildServer(content, { booking, ip } = {}) {
+  const server = new McpServer(SERVER_INFO, { instructions: booking ? INSTRUCTIONS + BOOKING_INSTRUCTIONS : INSTRUCTIONS });
 
   for (const [name, res, title, description] of TOOLS) {
     server.registerTool(name, { title, description, inputSchema: { lang }, annotations: { title, ...READ_ONLY } }, ({ lang: l }) =>
@@ -82,6 +148,7 @@ export function buildServer(content) {
     },
   );
 
+  if (booking) registerBooking(server, booking, ip);
   return server;
 }
 
@@ -103,8 +170,18 @@ async function readBody(req) {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-export function startServer({ port, host, contentDir }) {
+/** The client IP nginx passes in X-Real-IP; only trusted from a loopback peer. */
+function clientIp(req) {
+  const peer = req.socket.remoteAddress ?? '';
+  const loopback = peer === '127.0.0.1' || peer === '::1' || peer === '::ffff:127.0.0.1';
+  const header = req.headers['x-real-ip'];
+  return loopback && typeof header === 'string' && header ? header : peer;
+}
+
+export function startServer({ port, host, contentDir, calendlyToken }) {
   const content = loadContent(contentDir);
+  const booking = calendlyToken ? createBooking({ token: calendlyToken }) : undefined;
+  console.log(`mcp: booking tools ${booking ? 'on' : 'off (no CALENDLY_TOKEN)'}`);
   const http = createHttpServer(async (req, res) => {
     const { pathname } = new URL(req.url ?? '/', 'http://localhost');
     if (pathname === '/health') return sendJson(res, 200, { ok: true });
@@ -121,7 +198,7 @@ export function startServer({ port, host, contentDir }) {
       return sendJson(res, 400, rpcError(-32700, 'Parse error: the body is not JSON'));
     }
 
-    const server = buildServer(content);
+    const server = buildServer(content, { booking, ip: clientIp(req) });
     const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
     res.on('close', () => {
       void transport.close();
@@ -145,5 +222,6 @@ if (isMain || process.env.MCP_START === '1') {
     port: Number(process.env.MCP_PORT ?? 3100),
     host: process.env.MCP_HOST ?? '127.0.0.1',
     contentDir: process.env.MCP_CONTENT_DIR ?? fileURLToPath(new URL('../dist/api/v1/', import.meta.url)),
+    calendlyToken: process.env.CALENDLY_TOKEN?.trim(),
   });
 }

@@ -9,7 +9,7 @@ const MCP = `${SITE}mcp`;
 function mcpSection() {
   return `      <section id="mcp" class="api-endpoint">
         <h2>MCP server</h2>
-        <p>The same content as tools for AI agents, over the Model Context Protocol. Read-only, no sign-in, Streamable HTTP.</p>
+        <p>The same content as tools for AI agents, over the Model Context Protocol, plus booking the 20-minute intro call. No sign-in, Streamable HTTP.</p>
         <dl class="api-facts">
           <dt>Endpoint</dt><dd><code>${MCP}</code></dd>
           <dt>Server card</dt><dd><a href="../mcp/server-card">${MCP}/server-card</a></dd>
@@ -31,7 +31,8 @@ claude mcp add --transport http sergej-kukshausen ${MCP}
 ${TOOL_SUMMARIES.map((t) => `            <tr><td><code>${esc(t.name)}</code></td><td>${esc(t.description)}</td></tr>`).join('\n')}
           </tbody>
         </table>
-        <p>Every tool takes <code>lang</code> (<code>en</code>, <code>de</code>, <code>ru</code>, <code>hu</code>). Each REST resource is also an MCP resource under its URL, e.g. <code>${SERVER}/en/profile.json</code>.</p>
+        <p>Every content tool takes <code>lang</code> (<code>en</code>, <code>de</code>, <code>ru</code>, <code>hu</code>). Each REST resource is also an MCP resource under its URL, e.g. <code>${SERVER}/en/profile.json</code>.</p>
+        <p>Booking asks twice: <code>book_intro_call</code> without <code>confirm</code> only checks the slot; the agent books with <code>confirm: true</code> after the person agrees. At most 3 bookings per client a day.</p>
       </section>`;
 }
 
