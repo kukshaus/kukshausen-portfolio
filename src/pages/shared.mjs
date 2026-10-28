@@ -5,7 +5,7 @@ export const MALT = 'https://www.malt.com/profile/sergejkukshausen';
 export const UPWORK = 'https://www.upwork.com/freelancers/~01a10ce5666c6d650f';
 export const LANGS = ['en', 'de', 'ru', 'hu'];
 /** Date the content was last updated, shown on the pages and returned by the API. */
-export const UPDATED = '2026-10-23';
+export const UPDATED = '2026-10-28';
 export const LANG_NAMES = { en: 'English', de: 'Deutsch', ru: 'Русский', hu: 'Magyar' };
 
 /** Folder of a language relative to the site root: '' for English, 'de/' etc. */

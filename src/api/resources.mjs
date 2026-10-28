@@ -20,6 +20,7 @@ export const LINKS = {
 // One entry per item of the i18n lists, in the same order.
 const SERVICE_IDS = ['fractional-engineering-management', 'legacy-to-aws-migration', 'ai-skills-for-dev-teams', 'mtext-output-management'];
 const PROJECTS = [
+  { id: 'printing-group-ai-automation', organization: 'Online printing group, SE Asia', from: 2026, to: null },
   { id: 'fiserv-payment-routing', organization: 'Fiserv', from: 2020, to: null },
   { id: 'fiserv-team-leadership', organization: 'Fiserv', from: 2020, to: null },
   { id: 'fiserv-ai-skills', organization: 'Fiserv', from: 2020, to: null },

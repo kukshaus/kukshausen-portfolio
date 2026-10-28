@@ -3,7 +3,7 @@
 export default {
   lang: 'de',
   ogLocale: 'de_DE',
-  dateLong: '23. Oktober 2026',
+  dateLong: '28. Oktober 2026',
 
   meta: {
     title: 'Sergej Kukshausen | Interim Engineering Manager (Fintech)',
@@ -70,6 +70,12 @@ export default {
   work: {
     h2: 'Wo ich etwas bewegt habe',
     items: [
+      {
+        tag: 'ONLINE-DRUCKEREIGRUPPE, SÜDOSTASIEN · SEIT 2026',
+        title: 'KI-gestützte Prozessautomatisierung in fünf Teams',
+        text: 'Automatisierungsberater für eine Online-Druckereigruppe in drei Ländern. Ich begleite die Menschen bei ihrer Arbeit und nutze dann Claude Code als täglichen Build-Partner: Aus Meeting-Transkripten werden nummerierte Anforderungen, aus Anforderungen noch am selben Tag klickbare Prototypen und aus Prototypen Spezifikationen, nach denen die internen Entwickler programmieren. Geliefert: ein KI-Tool, das Lieferantenrechnungen liest und mit 6.755 Produktionsaufträgen abgleicht (99 % exakte Treffer), ein Bankabgleich-Tool, das jetzt im Shopsystem läuft, und ein MCP-Server, über den KI-Assistenten Live-Preise aus den Webshops abrufen.',
+        stack: 'Claude Code · MCP · Python · Next.js · MongoDB · Agent Skills · Jira',
+      },
       {
         tag: 'FISERV · SEIT 2020',
         title: 'Payment Routing vom Mainframe in die Cloud',

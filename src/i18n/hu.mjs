@@ -3,7 +3,7 @@
 export default {
   lang: 'hu',
   ogLocale: 'hu_HU',
-  dateLong: '2026. október 23.',
+  dateLong: '2026. október 28.',
 
   meta: {
     title: 'Sergej Kukshausen | Szoftverfejlesztési vezető és tanácsadó',
@@ -70,6 +70,12 @@ export default {
   work: {
     h2: 'Ahol érdemi eredményt értem el',
     items: [
+      {
+        tag: 'ONLINE NYOMDAI CSOPORT, DÉLKELET-ÁZSIA · 2026 – JELENLEG',
+        title: 'AI-alapú folyamatautomatizálás öt csapatban',
+        text: 'Automatizálási tanácsadó egy három országban működő online nyomdai csoportnál. Először a munkát végző kollégák mellett követem a folyamatokat, aztán a Claude Code a napi fejlesztőpartnerem: a meetingek leirataiból számozott követelmények lesznek, a követelményekből még aznap kattintható prototípusok, a prototípusokból pedig specifikációk, amelyek alapján a belső fejlesztők kódolnak. Elkészült egy AI-eszköz, amely beolvassa a beszállítói számlákat, és 6755 gyártási megrendeléssel veti össze őket, 99%-ban pontos egyezéssel; egy banki egyeztető eszköz, amely már élesben fut a webshop rendszerén; és egy MCP-szerver, amelyen keresztül AI-asszisztensek élő árakat kérhetnek le a webshopokból.',
+        stack: 'Claude Code · MCP · Python · Next.js · MongoDB · Agent skills · Jira',
+      },
       {
         tag: 'FISERV · 2020 – JELENLEG',
         title: 'Fizetési routing mainframe-ről a felhőbe',

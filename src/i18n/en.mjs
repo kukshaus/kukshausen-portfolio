@@ -3,7 +3,7 @@
 export default {
   lang: 'en',
   ogLocale: 'en_GB',
-  dateLong: '23 October 2026',
+  dateLong: '28 October 2026',
 
   meta: {
     title: 'Sergej Kukshausen | Engineering Manager &amp; Fractional Tech Lead',
@@ -70,6 +70,12 @@ export default {
   work: {
     h2: "Where I've made an impact",
     items: [
+      {
+        tag: 'ONLINE PRINTING GROUP, SE ASIA · 2026 – PRESENT',
+        title: 'AI-driven process automation across five teams',
+        text: 'Automation consultant for an online printing group in three countries. I shadow the people doing the work, then use Claude Code as my daily build partner: meeting transcripts become numbered requirements, requirements become clickable prototypes the same day, and prototypes become specs the in-house developers code from. Delivered an AI tool that reads supplier invoices and checks them against 6,755 production jobs with 99% exact matches, a bank-matching tool now live on the shop system, and an MCP server that lets AI assistants quote live prices from the webshops.',
+        stack: 'Claude Code · MCP · Python · Next.js · MongoDB · Agent skills · Jira',
+      },
       {
         tag: 'FISERV · 2020 – PRESENT',
         title: 'Mainframe to cloud payment routing',
