@@ -52,7 +52,7 @@ function schema(t) {
       { '@type': 'WebSite', '@id': `${SITE}#website`, url: SITE, name: 'Sergej Kukshausen', alternateName: 'sergej.kukshausen.me', inLanguage: ['en', 'de', 'ru', 'hu'], publisher: { '@id': person } },
       {
         '@type': 'ProfilePage', '@id': `${url}#profilepage`, url, name: stripTags(t.meta.title), inLanguage: t.lang,
-        dateCreated: '2026-10-16', dateModified: '2026-10-17T09:00:00+02:00',
+        dateCreated: '2026-10-16', dateModified: '2026-10-28T09:00:00+01:00',
         isPartOf: { '@id': `${SITE}#website` }, about: { '@id': person }, mainEntity: { '@id': person },
         primaryImageOfPage: { '@id': `${SITE}#portrait` },
       },
