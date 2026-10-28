@@ -57,13 +57,14 @@ export function langSwitcher(t, page) {
 export function header(t, { page, anchors }) {
   // On the homepage the nav uses in-page anchors; on legal pages it links back to the homepage sections.
   const base = anchors ? '' : './';
+  // Links are at least 44px tall; the bar wraps instead of overlapping when text is enlarged.
   const item = (id, label) =>
-    `          <li class="py-3 px-[0.3rem] sm:px-3 md:px-5 whitespace-nowrap"><a class="text-[0.8rem] min-[400px]:text-[0.9rem] sm:text-lg" href="${base}#${id}">${label}</a></li>`;
+    `          <li class="whitespace-nowrap"><a class="inline-flex items-center min-h-[44px] px-2 md:px-4 text-[0.9rem] sm:text-lg" href="${base}#${id}">${label}</a></li>`;
   return `    <header
-      class="sm:min-h-[140px] min-h-[117px] flex flex-wrap justify-between items-center flex-col md:flex-row px-3 bg-white w-full sticky top-0 z-[1] relative"
+      class="flex flex-wrap items-center gap-x-4 px-3 py-2 md:py-3 bg-white w-full sticky top-0 z-[1]"
     >
-      <a href="./" class="flex-none mx-10" aria-label="${t.nav.home}">
-        <svg viewBox="0 0 100 72" class="h-12 w-auto sm:h-[4.5rem] mt-3 sm:mt-0" role="img" aria-label="Kukshausen logo">
+      <a href="./" class="flex-none md:mx-6" aria-label="${t.nav.home}">
+        <svg viewBox="0 0 100 72" class="h-12 w-auto md:h-[4.5rem]" role="img" aria-label="Kukshausen logo">
           <circle cx="30" cy="40" r="27" fill="none" stroke="#073E29" stroke-width="6" />
           <text x="30" y="59" text-anchor="middle" font-family="Lexend Deca, system-ui, sans-serif" font-weight="700" font-size="54" fill="#073E29">S</text>
           <path d="M68 8v56" stroke="#073E29" stroke-width="7" stroke-linecap="round" />
@@ -71,8 +72,8 @@ export function header(t, { page, anchors }) {
           <path d="M72 40 L94 64" stroke="#073E29" stroke-width="7" stroke-linecap="round" />
         </svg>
       </a>
-      <nav class="flex-1 absolute inset-x-1/2 top-[50%] md:top-[unset]" aria-label="${t.nav.label}">
-        <ul class="flex justify-center">
+      <nav class="order-last w-full md:order-none md:w-auto md:flex-1" aria-label="${t.nav.label}">
+        <ul class="flex flex-wrap justify-center">
 ${item('services', t.nav.services)}
 ${item('projects', t.nav.work)}
 ${item('about', t.nav.about)}
@@ -81,7 +82,6 @@ ${item('contact', t.nav.contact)}
         </ul>
       </nav>
       ${langSwitcher(t, page)}
-      ${anchors ? '<div class="progress" aria-hidden="true"></div>' : ''}
     </header>`;
 }
 

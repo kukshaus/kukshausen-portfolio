@@ -75,6 +75,7 @@ export default {
         title: 'Payment Routing vom Mainframe in die Cloud',
         text: 'Leitung der Modernisierung eines hochverfügbaren Payment-Routing-Systems vom On-Prem-Mainframe hin zu Cloud-native Microservices auf AWS: 31 % geringere Infrastrukturkosten, 12 % schnellere Incident-Behebung, durchgehend PSD2- und DSGVO-konform.',
         stack: 'Python · AWS · Kafka · Kubernetes · GitLab CI/CD',
+        route: { label: 'Payment Routing bei Fiserv', before: 'Vorher', beforeText: 'Mainframe im eigenen Rechenzentrum', after: 'Nachher', afterText: 'Microservices auf AWS' },
       },
       {
         tag: 'FISERV · TEAMLEITUNG',
@@ -135,7 +136,7 @@ export default {
     photoAlt: 'Sergej Kukshausen mit einem Welpen',
     h2: 'Hallo, ich bin Sergej Kukshausen.',
     paragraphs: [
-      'Sergej Kukshausen ist Hands-on Engineering Manager bei Fiserv in Budapest und liefert seit über 11 Jahren geschäftskritische Plattformen, die letzten acht Jahre davon in Banking und Fintech. Zuletzt habe ich die Migration eines hochverfügbaren Payment-Routing-Systems vom Mainframe auf Cloud-native Microservices auf AWS geleitet, die Infrastrukturkosten um 31 % gesenkt und die Incident-Behebung um 12 % beschleunigt.',
+      'Ich bin Hands-on Engineering Manager bei Fiserv in Budapest und liefere seit über 11 Jahren geschäftskritische Plattformen, die letzten acht Jahre davon in Banking und Fintech. Zuletzt habe ich die Migration eines hochverfügbaren Payment-Routing-Systems vom Mainframe auf Cloud-native Microservices auf AWS geleitet, die Infrastrukturkosten um 31 % gesenkt und die Incident-Behebung um 12 % beschleunigt.',
       'Ich führe Menschen so, wie ich selbst gerne geführt worden wäre: regelmäßige 1:1s, ehrliches Coaching, klare Ziele und faire Performance Reviews für cross-funktionale Engineering-Teams. Die teamübergreifende Einführung von Scrum hat die Time-to-Market um 21 % verkürzt, und drei interne Audits in Folge verliefen ohne Feststellungen.',
       'Ich programmiere nach wie vor täglich: Python- und Bash-Pipelines für sehr große Dateien sowie individuelle KI-Skills für GitHub Copilot, Claude und Codex, die das ganze Team schneller machen. Von Budapest aus baue ich mit Leidenschaft produktorientierte, leistungsstarke Teams auf.',
     ],
@@ -346,7 +347,7 @@ export default {
 <p>Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Bei Bekanntwerden von Rechtsverletzungen entferne ich derartige Links umgehend.</p>
 
 <h2>Urheberrecht</h2>
-<p>Texte, Fotos und das Logo auf dieser Website sind, soweit nicht anders angegeben, mein eigenes Werk und urheberrechtlich geschützt. Vervielfältigung oder Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung. Die Marken-Icons im Bereich „Toolkit“ gehören den jeweiligen Inhabern und dienen ausschließlich der Kennzeichnung der Technologie.</p>
+<p>Texte, Fotos und das Logo auf dieser Website sind, soweit nicht anders angegeben, mein eigenes Werk und urheberrechtlich geschützt. Vervielfältigung oder Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung. Die Marken-Icons auf dieser Website gehören den jeweiligen Inhabern und dienen ausschließlich der Kennzeichnung des Dienstes.</p>
 
 <h2>Streitbeilegung</h2>
 <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>

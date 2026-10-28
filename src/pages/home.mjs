@@ -25,6 +25,15 @@ const link = (href, cls = 'underline underline-offset-4 text-[#073E29]') => [
   `<a href="${href}" target="_blank" rel="noopener" class="${cls}">`,
   '</a>',
 ];
+/** Before/after diagram of the payment routing migration, the one case shown as a picture. */
+const route = (r) => `<figure class="route">
+                <figcaption class="route-label">${r.label}</figcaption>
+                <div class="route-path">
+                  <p class="route-node"><span class="route-k">${r.before}</span>${r.beforeText}</p>
+                  <span class="route-arrow" aria-hidden="true"></span>
+                  <p class="route-node is-after"><span class="route-k">${r.after}</span>${r.afterText}</p>
+                </div>
+              </figure>`;
 const stripTags = (html) => html.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&');
 
 function schema(t) {
@@ -133,12 +142,6 @@ ${header(t, { page: '', anchors: true })}
         id="intro"
         class="relative bg-[#FEF3DF] px-[1.5rem] pt-[1.5rem] sm:px-[2.5rem] sm:pt-[2.5rem] md:px-[5.5rem] md:pt-[5.5rem] scroll-mt-[100vmax]"
       >
-        <div class="hero-bg" aria-hidden="true">
-          <div class="blob blob-1"></div>
-          <div class="blob blob-2"></div>
-          <div class="blob blob-3"></div>
-        </div>
-
         <div class="relative mx-auto max-w-[1170px] flex gap-4 flex-col md:flex-row">
           <div class="flex-1 pb-16">
             <p class="eyebrow text-[1rem] sm:text-[1.15rem]">
@@ -170,7 +173,7 @@ ${header(t, { page: '', anchors: true })}
       </section>
 
       <!-- ================= SERVICES ================= -->
-      <section id="services" class="px-5 py-[5rem] scroll-mt-[6rem]">
+      <section id="services" class="px-5 py-[5rem] scroll-mt-[8rem] md:scroll-mt-[6.5rem]">
         <div class="mx-auto max-w-[1170px]">
           <h2 class="text-[2.5rem] leading-tight text-center" data-reveal>${t.services.h2}</h2>
           <p class="text-center mt-3 mb-10 text-gray-700 max-w-[720px] mx-auto" data-reveal style="--d: 80ms">${t.services.intro}</p>
@@ -186,22 +189,23 @@ ${t.services.items.map((s, i) => `            <article class="svc card flex flex
       </section>
 
       <!-- ================= WORK ================= -->
-      <section id="projects" class="px-5 py-[5rem] scroll-mt-[6rem]">
+      <section id="projects" class="px-5 py-[5rem] scroll-mt-[8rem] md:scroll-mt-[6.5rem]">
         <div class="mx-auto max-w-[1170px]">
           <h2 class="text-[2.5rem] leading-tight text-center mb-10" data-reveal>${t.work.h2}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-${t.work.items.map((w, i) => `            <article class="card flex flex-col items-center justify-center gap-5 p-16 bg-[#E6EBE4]" data-reveal style="--d: ${i * 80}ms">
-              <p class="text-sm font-semibold tracking-wide text-[#073E29] text-center">${w.tag}</p>
-              <h3 class="text-[1.4rem] font-medium leading-tight text-center">${w.title}</h3>
-              <p class="leading-loose text-center">${w.text}</p>
-              <p class="text-sm text-gray-700 text-center mt-auto">${w.stack}</p>
+${t.work.items.map((w, i) => `            <article class="card flex flex-col gap-4 p-8 bg-[#E6EBE4]" data-reveal style="--d: ${i * 80}ms">
+              <p class="text-sm font-semibold tracking-wide text-[#073E29]">${w.tag}</p>
+              <h3 class="text-[1.4rem] font-medium leading-tight">${w.title}</h3>${w.route ? `
+              ${route(w.route)}` : ''}
+              <p class="leading-relaxed">${w.text}</p>
+              <p class="text-sm text-gray-700 mt-auto pt-2">${w.stack}</p>
             </article>`).join('\n')}
           </div>
         </div>
       </section>
 
       <!-- ================= PROCESS ================= -->
-      <section id="process" class="px-5 py-[5rem] bg-[#F7F9F4] scroll-mt-[6rem]">
+      <section id="process" class="px-5 py-[5rem] bg-[#F7F9F4] scroll-mt-[8rem] md:scroll-mt-[6.5rem]">
         <div class="mx-auto max-w-[1170px]">
           <h2 class="text-[2.5rem] leading-tight text-center mb-10" data-reveal>${t.process.h2}</h2>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -219,7 +223,7 @@ ${t.process.steps.map((s, i) => `            <article class="phase bg-white p-8"
       </section>
 
       <!-- ================= ABOUT ================= -->
-      <section id="about" class="px-5 py-[5rem] bg-[#F7F9F4] scroll-mt-[6rem]">
+      <section id="about" class="px-5 py-[5rem] scroll-mt-[8rem] md:scroll-mt-[6.5rem]">
         <div class="mx-auto max-w-[1170px] flex gap-12 flex-col sm:flex-row">
           <div class="flex-1" data-reveal>
             <picture>
@@ -243,24 +247,8 @@ ${['de', 'ru', 'en', 'hu'].map((l) => `              <li class="lang">${FLAGS[l]
         </div>
       </section>
 
-      <!-- ================= SKILLS ================= -->
-      <section id="skills" class="pt-[6.25rem] pb-[5rem] scroll-mt-[6rem]">
-        <div class="mx-auto max-w-[1170px]">
-          <header data-reveal>
-            <h2 class="text-[2.5rem] leading-tight text-center">${t.toolkit.h2}</h2>
-            <p class="text-center mt-3 text-gray-700">${t.toolkit.intro}</p>
-          </header>
-          <div class="grid custom-grid mt-5 px-4" data-skills>
-${SKILLS.map(([file, name], i) => `            <div class="skill flex items-center justify-center tooltip" data-reveal style="--d: ${i * 40}ms">
-              <p class="tooltiptext shadow-2xl text-sm"><span class="text-lg">${name}</span><br />${t.toolkit.tips[file]}</p>
-              <img width="64" height="48" loading="lazy" class="h-12 w-16 object-contain" src="/assets/images/skills/${file}.svg" alt="${name}" />
-            </div>`).join('\n')}
-          </div>
-        </div>
-      </section>
-
       <!-- ================= FAQ ================= -->
-      <section id="faq" class="px-5 py-[5rem] bg-[#FEF3DF] scroll-mt-[6rem]">
+      <section id="faq" class="px-5 py-[5rem] bg-[#F7F9F4] scroll-mt-[8rem] md:scroll-mt-[6.5rem]">
         <div class="mx-auto max-w-[860px]">
           <h2 class="text-[2.5rem] leading-tight text-center mb-10" data-reveal>${t.faq.h2}</h2>
           <div class="flex flex-col gap-3">
@@ -273,47 +261,47 @@ ${t.faq.items.map((f, i) => `            <article class="faq-item bg-white p-6" 
       </section>
 
       <!-- ================= CONTACT ================= -->
-      <section id="contact" class="p-[1.5rem] sm:p-[2rem] md:p-[5.5rem] bg-[#FEF3DF] scroll-mt-[6rem]">
+      <section id="contact" class="p-[1.5rem] sm:p-[2rem] md:p-[5.5rem] bg-[#FEF3DF] scroll-mt-[8rem] md:scroll-mt-[6.5rem]">
         <div class="mx-auto max-w-[1170px] flex gap-10 flex-col sm:flex-row">
           <div class="flex-auto" data-reveal>
-            <h2 class="text-xl font-semibold mb-4">${c.eyebrow}</h2>
-            <h3 class="text-[clamp(1.5rem,4vmax,2.5rem)] leading-tight">${c.h3}</h3>
+            <p class="text-xl font-semibold mb-4">${c.eyebrow}</p>
+            <h2 class="text-[clamp(1.5rem,4vmax,2.5rem)] leading-tight">${c.h3}</h2>
             <p class="mt-4 text-gray-700">${c.reply}</p>
             <a href="${CALENDLY}" target="_blank" rel="noopener" class="cta text-white bg-[#073E29] px-5 py-3 font-bold inline-block mt-6">${c.calendar}</a>
             <section class="mt-10">
-              <h4 class="text-xl font-semibold mb-8">${c.infoH}</h4>
+              <h3 class="text-xl font-semibold mb-8">${c.infoH}</h3>
               <div class="flex flex-col gap-5">
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/email.svg" alt="" aria-hidden="true" width="20" height="20" class="contact-icon" /></div>
-                  <div><a href="mailto:sergej@kukshausen.me" class="text-lg font-light">sergej@kukshausen.me</a></div>
+                  <div><a href="mailto:sergej@kukshausen.me" class="text-lg">sergej@kukshausen.me</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/phone.svg" alt="" aria-hidden="true" width="20" height="20" class="contact-icon" /></div>
-                  <div><a href="tel:+36707871989" class="text-lg font-light">+36 70 787 1989</a></div>
+                  <div><a href="tel:+36707871989" class="text-lg">+36 70 787 1989</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/linkedin.svg" alt="" aria-hidden="true" width="20" height="20" class="contact-icon" /></div>
-                  <div><a href="https://www.linkedin.com/in/sergej-kukshausen-099015163/" target="_blank" rel="noopener me" class="text-lg font-light">sergej-kukshausen</a></div>
+                  <div><a href="https://www.linkedin.com/in/sergej-kukshausen-099015163/" target="_blank" rel="noopener me" class="text-lg">sergej-kukshausen</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/xing.svg" alt="" aria-hidden="true" width="20" height="20" class="contact-icon" /></div>
-                  <div><a href="https://www.xing.com/profile/Sergej_Kukshausen" target="_blank" rel="noopener me" class="text-lg font-light">Sergej_Kukshausen</a></div>
+                  <div><a href="https://www.xing.com/profile/Sergej_Kukshausen" target="_blank" rel="noopener me" class="text-lg">Sergej_Kukshausen</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/github.svg" alt="" aria-hidden="true" width="20" height="20" class="contact-icon" /></div>
-                  <div><a href="https://github.com/kukshaus" target="_blank" rel="noopener me" class="text-lg font-light">github.com/kukshaus</a></div>
+                  <div><a href="https://github.com/kukshaus" target="_blank" rel="noopener me" class="text-lg">github.com/kukshaus</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/malt.svg" alt="" aria-hidden="true" width="28" height="28" class="contact-icon contact-icon-wide" /></div>
-                  <div><a href="${MALT}" target="_blank" rel="noopener me" class="text-lg font-light">${c.malt}</a></div>
+                  <div><a href="${MALT}" target="_blank" rel="noopener me" class="text-lg">${c.malt}</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div><img src="/assets/images/contact/upwork.svg" alt="" aria-hidden="true" width="28" height="28" class="contact-icon contact-icon-wide" /></div>
-                  <div><a href="${UPWORK}" target="_blank" rel="noopener me" class="text-lg font-light">${c.upwork}</a></div>
+                  <div><a href="${UPWORK}" target="_blank" rel="noopener me" class="text-lg">${c.upwork}</a></div>
                 </div>
                 <div class="flex gap-3">
                   <div>
-                    <a href="${root}Sergej_Kukshausen_CV.pdf" download="Sergej_Kukshausen_CV.pdf" class="cta px-4 py-3 font-bold border border-solid text-white bg-[#073E29] border-[#073E29] transition-all mt-auto inline-block">${c.resume}</a>
+                    <a href="${root}Sergej_Kukshausen_CV.pdf" download="Sergej_Kukshausen_CV.pdf" class="cta-secondary px-5 py-3 font-bold inline-block">${t.hero.cv}</a>
                   </div>
                 </div>
               </div>
@@ -330,15 +318,15 @@ ${ACCESS_KEY ? `                <input type="hidden" name="access_key" value="${
 ` : ''}                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
                 <div class="flex flex-col gap-1">
                   <label for="name" class="w-fit required">${c.name}</label>
-                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="${c.namePh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 placeholder:font-light outline-none" />
+                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="${c.namePh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 outline-none" />
                 </div>
                 <div class="flex flex-col gap-1">
                   <label for="email" class="w-fit required">${c.email}</label>
-                  <input id="email" name="email" type="email" required autocomplete="email" placeholder="${c.emailPh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 placeholder:font-light outline-none" />
+                  <input id="email" name="email" type="email" required autocomplete="email" placeholder="${c.emailPh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 outline-none" />
                 </div>
                 <div class="flex flex-col gap-1">
                   <label for="phone" class="w-fit">${c.phone}</label>
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="${c.phonePh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 placeholder:font-light outline-none" />
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="${c.phonePh}" class="field bg-[#E0F1F1] h-[3.75rem] px-4 py-6 outline-none" />
                 </div>
                 <div class="flex flex-col gap-1">
                   <label for="topic" class="w-fit required">${c.topic}</label>
@@ -349,10 +337,10 @@ ${c.topics.map((o) => `                    <option>${o}</option>`).join('\n')}
                 </div>
                 <div class="flex flex-col gap-1">
                   <label for="message" class="w-fit required">${c.message}</label>
-                  <textarea id="message" name="message" required placeholder="${c.messagePh}" class="field bg-[#E0F1F1] px-4 py-6 placeholder:font-light outline-none min-h-[10rem]"></textarea>
+                  <textarea id="message" name="message" required placeholder="${c.messagePh}" class="field bg-[#E0F1F1] px-4 py-6 outline-none min-h-[10rem]"></textarea>
                 </div>
                 <div>
-                  <p class="text-sm font-light mb-3">${fill(c.notice, { privacy: ['<a href="privacy.html" class="underline underline-offset-2">', '</a>'] })}</p>
+                  <p class="text-sm mb-3">${fill(c.notice, { privacy: ['<a href="privacy.html" class="underline underline-offset-2">', '</a>'] })}</p>
                   <button type="submit" class="cta text-white bg-[#073E29] px-4 py-3 font-bold mt-2 w-full">${c.send}</button>
                   <p class="mt-3 text-sm" data-status aria-live="polite"></p>
                 </div>

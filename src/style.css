@@ -73,8 +73,20 @@ body {
   font-family: 'Lexend Deca', 'Lexend Deca Fallback', 'Lexend Deca Fallback Arial', system-ui, sans-serif;
   color: var(--text-color-primary);
   background: #fff;
-  /* The decorative blobs bleed past the right edge; clip keeps the sticky header working. */
-  overflow-x: clip;
+}
+
+/* Long words and slash-joined terms wrap instead of running off the screen at large text sizes. */
+h1,
+h2,
+h3,
+p,
+li {
+  overflow-wrap: break-word;
+}
+/* Form labels are sized to their text (w-fit), so they need a hard limit as well. */
+label {
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 body * {
@@ -83,110 +95,25 @@ body * {
 
 /* ---- components carried over from the original ---- */
 
-.tooltip {
-  position: relative;
-}
-.tooltip .tooltiptext {
-  visibility: hidden;
-  opacity: 0;
-  width: 240px;
-  background-color: #fffffff2;
-  color: #000;
-  text-align: center;
-  padding: 12px;
-  border-radius: 8px;
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: -60px;
-  transform: translateY(6px);
-  transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
-}
-.tooltip:hover,
-.tooltip:focus-within {
-  z-index: 10;
-}
-.tooltip:hover .tooltiptext,
-.tooltip:focus-within .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.required {
-  position: relative;
-}
 .required::after {
   content: '*';
-  position: absolute;
-  inset-inline-end: -12px;
-  color: tomato;
-}
-
-.custom-grid {
-  grid-template-columns: repeat(auto-fit, 80px);
-  gap: 1rem;
-  justify-content: center;
+  margin-inline-start: 0.25rem;
+  color: #c2410c;
 }
 
 .contact-icon {
   width: 1.25rem;
   height: 1.25rem;
 }
+/* Email address and profile handles break rather than overflow at large text sizes. */
+#contact .flex.gap-3 > div {
+  min-width: 0;
+}
+#contact a {
+  overflow-wrap: anywhere;
+}
 
 /* ---- wow layer ---- */
-
-/* Drifting colour blobs behind the hero. */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-.blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(70px);
-  opacity: 0.55;
-  will-change: transform;
-  animation: drift 18s ease-in-out infinite alternate;
-}
-.blob-1 {
-  width: 38rem;
-  height: 38rem;
-  left: -12rem;
-  top: -14rem;
-  background: #e0f1f1;
-}
-.blob-2 {
-  width: 30rem;
-  height: 30rem;
-  right: -8rem;
-  top: 2rem;
-  background: #0b5a3b;
-  opacity: 0.16;
-  animation-duration: 24s;
-  animation-delay: -6s;
-}
-.blob-3 {
-  width: 26rem;
-  height: 26rem;
-  left: 35%;
-  bottom: -14rem;
-  background: #f5d9a8;
-  animation-duration: 21s;
-  animation-delay: -12s;
-}
-@keyframes drift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(6rem, 3rem, 0) scale(1.15);
-  }
-}
 
 /* Headline words slide up out of a clipped line.
    Hidden start states are gated on html.js so the page is fully visible without JavaScript. */
@@ -199,6 +126,11 @@ body * {
 }
 .word {
   display: inline-block;
+}
+/* At large text sizes a single word can be wider than the screen: let it wrap inside its mask. */
+.word-mask,
+.word {
+  max-width: 100%;
 }
 .h1-name {
   display: block;
@@ -233,71 +165,16 @@ body * {
   transform: none;
 }
 
-/* Hero portrait: enters with a tilt, then follows the cursor. */
 .portrait {
-  transform-style: preserve-3d;
-  transform: perspective(1200px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px))
-    scale(var(--s, 1));
-  opacity: var(--o, 1);
-  transition:
-    transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1),
-    opacity 0.8s ease;
   box-shadow: 0 30px 60px -20px rgba(7, 62, 41, 0.35);
 }
-.js .portrait {
-  --ty: 40px;
-  --s: 0.96;
-}
-.js.is-ready .portrait {
-  --ty: 0px;
-  --s: 1;
-}
-.portrait.is-tracking {
-  transition:
-    transform 0.12s ease-out,
-    opacity 0.8s ease;
-}
-
-/* Soft highlight sweeping across the portrait once. */
-.portrait::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
-  transform: translateX(-120%);
-  pointer-events: none;
-}
-.is-ready .portrait::after {
-  animation: shine 1.4s ease-out 0.9s 1 forwards;
-}
-@keyframes shine {
-  to {
-    transform: translateX(120%);
-  }
-}
-
-/* Primary call to action: subtle magnetic pull + glow. */
+/* Primary call to action: glow on hover. */
 .cta {
   position: relative;
-  transition:
-    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.25s ease;
+  transition: box-shadow 0.25s ease;
 }
 .cta:hover {
   box-shadow: 0 12px 30px -10px rgba(7, 62, 41, 0.6);
-}
-
-/* Stat strip under the hero copy. */
-/* Skill icon hover lift. */
-.skill img {
-  transition:
-    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.25s ease;
-}
-.skill:hover img,
-.skill:focus-within img {
-  transform: translateY(-4px) scale(1.12);
-  filter: drop-shadow(0 8px 12px rgba(7, 62, 41, 0.25));
 }
 
 /* Project cards. */
@@ -316,43 +193,20 @@ body * {
   box-shadow: inset 0 0 0 2px var(--green);
 }
 
-/* Scroll progress bar in the sticky header. */
-.progress {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 100%;
-  background: var(--green);
-  transform-origin: left;
-  transform: scaleX(var(--p, 0));
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .blob,
-  .is-ready .portrait::after {
-    animation: none;
-  }
   .word,
   [data-reveal],
-  .portrait,
   .cta,
-  .card,
-  .skill img {
+  .card {
     transition: none;
   }
   .word,
   [data-reveal] {
     opacity: 1;
     transform: none;
-  }
-  .portrait {
-    --o: 1;
-    --ty: 0px;
-    --s: 1;
   }
 }
 
@@ -383,7 +237,6 @@ body * {
 }
 .legal p,
 .legal li {
-  font-weight: 300;
   line-height: 1.7;
   color: var(--text-color-secondary);
 }
@@ -410,7 +263,6 @@ body * {
   color: #fff;
   padding: 1.5rem;
   text-align: center;
-  font-weight: 300;
   font-size: 0.95rem;
 }
 .site-footer a {
@@ -524,12 +376,67 @@ select.field {
   color: var(--green);
 }
 
+/* ---- payment routing before/after (first work card) ---- */
+.route {
+  margin: 0.25rem 0;
+}
+.route-label,
+.route-k {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.route-label {
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+.route-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+.route-node {
+  flex: 1 1 8rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  padding: 0.6rem 0.75rem;
+  background: #fff;
+  border: 1px dashed #54595f;
+  line-height: 1.35;
+}
+.route-node.is-after {
+  border: 1px solid var(--green);
+  box-shadow: inset 4px 0 0 var(--green);
+}
+.route-k {
+  display: block;
+  color: #54595f;
+  margin-bottom: 0.2rem;
+}
+.route-arrow {
+  align-self: center;
+  width: 1.5rem;
+  height: 2px;
+  background: var(--green);
+  position: relative;
+}
+.route-arrow::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  border: 5px solid transparent;
+  border-left: 7px solid var(--green);
+  border-right: 0;
+}
+
 /* ---- language switcher ---- */
 .lang-switch {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.75rem;
   display: flex;
+  flex-wrap: wrap;
+  margin-inline-start: auto;
   gap: 0.15rem;
   font-size: 0.8rem;
   font-weight: 500;
@@ -553,8 +460,7 @@ select.field {
 }
 @media (min-width: 768px) {
   .lang-switch {
-    position: static;
-    margin: 0 2rem 0 auto;
+    margin-inline-end: 2rem;
     font-size: 0.9rem;
   }
   .lang-switch a {

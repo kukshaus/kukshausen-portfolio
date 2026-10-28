@@ -61,7 +61,7 @@
 
 ## Pages
 
-- [Homepage](https://sergej.kukshausen.me/): services, impact cases, how we'd work together, about, toolkit, FAQ, contact
+- [Homepage](https://sergej.kukshausen.me/): services, impact cases, how we'd work together, about, FAQ, contact
 - [Startseite (Deutsch)](https://sergej.kukshausen.me/de/)
 - [Главная (Русский)](https://sergej.kukshausen.me/ru/)
 - [Kezdőlap (Magyar)](https://sergej.kukshausen.me/hu/)

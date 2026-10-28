@@ -50,54 +50,6 @@ function observeReveals(): void {
   targets.forEach((el) => observer.observe(el));
 }
 
-/** Portrait tilts toward the cursor while it moves over the hero. */
-function trackPortrait(): void {
-  const hero = document.querySelector<HTMLElement>('#intro');
-  const portrait = document.querySelector<HTMLElement>('.portrait');
-  if (!hero || !portrait || reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
-  hero.addEventListener('pointermove', (event) => {
-    const rect = portrait.getBoundingClientRect();
-    const dx = (event.clientX - (rect.left + rect.width / 2)) / rect.width;
-    const dy = (event.clientY - (rect.top + rect.height / 2)) / rect.height;
-    portrait.classList.add('is-tracking');
-    portrait.style.setProperty('--ry', `${dx * 10}deg`);
-    portrait.style.setProperty('--rx', `${-dy * 10}deg`);
-  });
-  hero.addEventListener('pointerleave', () => {
-    portrait.classList.remove('is-tracking');
-    portrait.style.setProperty('--ry', '0deg');
-    portrait.style.setProperty('--rx', '0deg');
-  });
-}
-
-/** Primary buttons lean a few pixels toward the cursor. */
-function magnetiseButtons(): void {
-  if (reduceMotion || !window.matchMedia('(hover: hover)').matches) return;
-  document.querySelectorAll<HTMLElement>('.cta').forEach((button) => {
-    button.addEventListener('pointermove', (event) => {
-      const rect = button.getBoundingClientRect();
-      const dx = event.clientX - (rect.left + rect.width / 2);
-      const dy = event.clientY - (rect.top + rect.height / 2);
-      button.style.transform = `translate(${dx * 0.15}px, ${dy * 0.25}px)`;
-    });
-    button.addEventListener('pointerleave', () => {
-      button.style.transform = '';
-    });
-  });
-}
-
-/** Thin progress bar under the sticky header. */
-function trackScrollProgress(): void {
-  const bar = document.querySelector<HTMLElement>('.progress');
-  if (!bar) return;
-  const update = () => {
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.setProperty('--p', String(max > 0 ? window.scrollY / max : 0));
-  };
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-}
-
 /**
  * Contact form. Posts JSON to Web3Forms when VITE_CONTACT_ACCESS_KEY is set
  * (or to VITE_CONTACT_ENDPOINT), otherwise opens the visitor's mail client
@@ -177,9 +129,6 @@ function wireContactForm(): void {
 
 splitHeadlineWords();
 observeReveals();
-trackPortrait();
-magnetiseButtons();
-trackScrollProgress();
 wireContactForm();
 
 // Service cards link to the form with their topic preselected.

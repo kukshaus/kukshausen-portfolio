@@ -75,6 +75,7 @@ export default {
         title: 'Fizetési routing mainframe-ről a felhőbe',
         text: 'Egy magas rendelkezésre állású fizetési routing rendszer modernizációját vezettem on-prem mainframe-ről cloud-native mikroszolgáltatásokra AWS-en: 31%-kal alacsonyabb infrastruktúraköltség, 12%-kal gyorsabb incidenskezelés, végig PSD2- és GDPR-megfelelőséggel.',
         stack: 'Python · AWS · Kafka · Kubernetes · GitLab CI/CD',
+        route: { label: 'Fizetési routing a Fiservnél', before: 'Előtte', beforeText: 'Saját mainframe', after: 'Utána', afterText: 'Mikroszolgáltatások AWS-en' },
       },
       {
         tag: 'FISERV · CSAPATVEZETŐ',
@@ -135,7 +136,7 @@ export default {
     photoAlt: 'Sergej Kukshausen egy kiskutyával',
     h2: 'Üdvözlöm, Sergej Kukshausen vagyok.',
     paragraphs: [
-      'Sergej Kukshausen hands-on Engineering Manager a Fiservnél, Budapesten él, és több mint 11 éve szállít üzletkritikus platformokat, az utóbbi nyolc évben a bank- és fintech szektorban. Legutóbb egy magas rendelkezésre állású fizetési routing rendszer migrációját vezettem mainframe-ről cloud-native mikroszolgáltatásokra AWS-en, amellyel 31%-kal csökkentettük az infrastruktúraköltségeket, az incidenskezelés pedig 12%-kal gyorsult.',
+      'Hands-on Engineering Manager vagyok a Fiservnél, Budapesten élek, és több mint 11 éve szállítok üzletkritikus platformokat, az utóbbi nyolc évben a bank- és fintech szektorban. Legutóbb egy magas rendelkezésre állású fizetési routing rendszer migrációját vezettem mainframe-ről cloud-native mikroszolgáltatásokra AWS-en, amellyel 31%-kal csökkentettük az infrastruktúraköltségeket, az incidenskezelés pedig 12%-kal gyorsult.',
       'Úgy vezetem az embereket, ahogyan én is szerettem volna, hogy vezessenek: rendszeres 1:1-ek, őszinte coaching, világos célok és fair teljesítményértékelés a cross-functional mérnökcsapatokban. A Scrum bevezetése ezekben a csapatokban 21%-kal rövidítette a termékbevezetési időt, és egymást követő három belső audit zárult nulla megállapítással.',
       'Ma is kódolok minden nap: Python- és Bash-pipeline-okat írok nagyon nagy fájlokhoz, valamint egyedi AI skilleket GitHub Copilothoz, Claude-hoz és Codexhez, amelyek az egész csapatot gyorsabbá teszik. Budapesten élek, és szenvedélyem a termékszemléletű, kiemelkedően teljesítő csapatok építése.',
     ],
@@ -346,7 +347,7 @@ export default {
 <p>Ez az oldal olyan külső weboldalakra hivatkozik, amelyek felett nincs befolyásom. A hivatkozott oldalak tartalmáért mindig azok üzemeltetője felel. A hivatkozott oldalakat a linkek elhelyezésekor ellenőriztem esetleges jogsértések szempontjából. Ha jogsértésről szerzek tudomást, a linket haladéktalanul eltávolítom.</p>
 
 <h2>Szerzői jog</h2>
-<p>Az oldalon található szövegek, fényképek és a logó – eltérő jelzés hiányában – saját alkotásaim, és szerzői jogi védelem alatt állnak. A szerzői jog által megengedett kereteken túli többszörözésükhöz vagy terjesztésükhöz írásbeli hozzájárulásom szükséges. Az eszköztár szakaszban látható márkaikonok a megfelelő jogtulajdonosokat illetik, és kizárólag az adott technológia azonosítására szolgálnak.</p>
+<p>Az oldalon található szövegek, fényképek és a logó – eltérő jelzés hiányában – saját alkotásaim, és szerzői jogi védelem alatt állnak. A szerzői jog által megengedett kereteken túli többszörözésükhöz vagy terjesztésükhöz írásbeli hozzájárulásom szükséges. Az oldalon látható márkaikonok a megfelelő jogtulajdonosokat illetik, és kizárólag az adott szolgáltatás azonosítására szolgálnak.</p>
 
 <h2>Vitarendezés</h2>
 <p>Az Európai Bizottság online vitarendezési platformot biztosít a <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a> címen. Fogyasztói békéltető testület előtti vitarendezési eljárásban nem kívánok és nem vagyok köteles részt venni.</p>

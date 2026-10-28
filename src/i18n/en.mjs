@@ -25,7 +25,7 @@ export default {
 
   hero: {
     eyebrow: 'Engineering Manager at Fiserv · Budapest · DE/EN/RU/HU · remote',
-    h1: 'Engineering Leadership for Mission-Critical Payment Platforms',
+    h1: 'Engineering leadership for mission-critical payment platforms',
     sub: '11+ years of software delivery, the last eight in banking and fintech. In-house at Fiserv, and open to fractional engineering leadership, mainframe-to-AWS migrations and AI-skills work for development teams.',
     cta: 'Book a 20-min call',
     cv: 'Download CV (PDF)',
@@ -72,37 +72,38 @@ export default {
     items: [
       {
         tag: 'FISERV · 2020 – PRESENT',
-        title: 'Mainframe to Cloud Payment Routing',
+        title: 'Mainframe to cloud payment routing',
         text: 'Led the modernization of a high-availability payment routing system from on-prem mainframe to cloud-native microservices on AWS: 31% lower infrastructure costs, 12% faster incident resolution, PSD2/GDPR-compliant throughout.',
         stack: 'Python · AWS · Kafka · Kubernetes · GitLab CI/CD',
+        route: { label: 'Payment routing at Fiserv', before: 'Before', beforeText: 'On-prem mainframe', after: 'After', afterText: 'Microservices on AWS' },
       },
       {
         tag: 'FISERV · TEAM LEAD',
-        title: 'A Team That Stays and Ships',
+        title: 'A team that stays and ships',
         text: 'Lead a cross-functional team of engineers and analysts: hiring, 1:1s, coaching and performance reviews. Introduced Scrum across teams and cut product launch time by 21%, with three audits passed at zero findings.',
         stack: 'Scrum · Product partnership · Hiring · Coaching',
       },
       {
         tag: 'FISERV · HANDS-ON',
-        title: 'AI Skills for the Whole Team',
+        title: 'AI skills for the whole team',
         text: "Daily Python and Bash: data post-processing pipelines for very large files, plus custom AI skills and agents for GitHub Copilot, Claude and Codex that accelerate the team's development workflow.",
         stack: 'Python · Bash · Copilot · Claude · Codex',
       },
       {
         tag: 'CAPGEMINI · 2018 – 2020',
-        title: '€2.2M Digital Transformation',
+        title: '€2.2M digital transformation',
         text: 'Delivered a digital transformation program for a major German finance processor, coordinating 6+ vendor systems and migrating operations to hybrid cloud. Document-workflow modernization cut manual processing 75%, saving €180K a year.',
         stack: 'SEPA · AWS · Kafka · Docker · M/Text',
       },
       {
         tag: 'ITEXIA · 2016 – 2018',
-        title: 'Advanced Automation Delivery',
+        title: 'Advanced automation delivery',
         text: 'Led end-to-end execution of an advanced automation project, hitting 100% of key milestones, and drove a 27% boost in customer satisfaction through close collaboration, risk management and proactive communication.',
         stack: 'PHP · Swift · Docker · Selenium · Drupal',
       },
       {
         tag: 'TTE-EUROPE · 2014 – 2015',
-        title: 'Java Web Apps for the Explosives Industry',
+        title: 'Java web apps for the explosives industry',
         text: 'Led IT initiatives in a safety-critical industry, delivering modern, scalable Java-based web applications and directing technical teams for timely delivery. Bachelor thesis: a mobile app for voice activity detection.',
         stack: 'Java · SQL · Redmine · Signal processing',
       },
@@ -135,16 +136,16 @@ export default {
     photoAlt: 'Sergej Kukshausen with a puppy',
     h2: "Hi, I'm Sergej Kukshausen.",
     paragraphs: [
-      'Sergej Kukshausen is a hands-on Engineering Manager at Fiserv, based in Budapest, with over 11 years delivering mission-critical platforms, the last eight of them in banking and fintech. Most recently I led the migration of a high-availability payment routing system from mainframe to cloud-native microservices on AWS, cutting infrastructure costs by 31% and speeding up incident resolution by 12%.',
+      'I\'m a hands-on Engineering Manager at Fiserv, based in Budapest, with over 11 years delivering mission-critical platforms, the last eight of them in banking and fintech. Most recently I led the migration of a high-availability payment routing system from mainframe to cloud-native microservices on AWS, cutting infrastructure costs by 31% and speeding up incident resolution by 12%.',
       'I manage people the way I wish I had been managed: regular 1:1s, honest coaching, clear goals and fair performance reviews for cross-functional engineering teams. Introducing Scrum across those teams cut product launch time by 21%, and three consecutive internal audits passed with zero findings.',
       "I still code every day. Python and Bash pipelines for very large files, and custom AI skills for GitHub Copilot, Claude and Codex that make the whole team faster. Based in Budapest, I'm passionate about building product-minded, high-performing teams.",
     ],
-    focusH: 'Focus Areas',
+    focusH: 'Focus areas',
     focus: [
-      ['Engineering Leadership', 'hiring and interviewing, 1:1s and coaching, performance reviews, goal setting, backlog grooming with Product, Agile/Scrum/SAFe, stakeholder management.'],
-      ['Hands-on Programming', 'Python (daily), Bash, Java, PHP, SQL, JavaScript/Angular, HTML/CSS; AI-assisted development with custom skills and agents for Copilot, Claude and Codex.'],
-      ['Cloud &amp; Architecture', 'AWS managed services, microservices, Docker, Kubernetes, Kafka, Jenkins, Argo CD, GitLab CI/CD.'],
-      ['Quality &amp; Compliance', 'PSD2 and GDPR-compliant delivery across legacy and cloud environments, audit-ready engineering.'],
+      ['Engineering leadership', 'hiring and interviewing, 1:1s and coaching, performance reviews, goal setting, backlog grooming with Product, Agile/Scrum/SAFe, stakeholder management.'],
+      ['Hands-on programming', 'Python (daily), Bash, Java, PHP, SQL, JavaScript/Angular, HTML/CSS; AI-assisted development with custom skills and agents for Copilot, Claude and Codex.'],
+      ['Cloud &amp; architecture', 'AWS managed services, microservices, Docker, Kubernetes, Kafka, Jenkins, Argo CD, GitLab CI/CD.'],
+      ['Quality &amp; compliance', 'PSD2 and GDPR-compliant delivery across legacy and cloud environments, audit-ready engineering.'],
       ['Certifications', 'Professional Scrum Master I (PSM I), Certified SAFe 4 Agilist. BSc Computer Science, TU Bergakademie Freiberg.'],
     ],
     languagesH: 'Languages',
@@ -226,7 +227,7 @@ export default {
     h3: "Let's talk about your team &amp; your platform.",
     reply: 'I reply within one business day, in English, German or Russian (Hungarian: basic). First step is a 20-minute call.',
     calendar: 'Pick a time in my calendar',
-    infoH: 'Contact Information',
+    infoH: 'Contact information',
     malt: 'Hire me on Malt',
     upwork: 'Hire me on Upwork',
     resume: 'Download Résumé',
@@ -262,7 +263,7 @@ export default {
   footer: {
     updated: 'Updated',
     imprint: 'Imprint',
-    privacy: 'Privacy Policy',
+    privacy: 'Privacy policy',
   },
 
   schema: {
@@ -278,9 +279,9 @@ export default {
   },
 
   privacy: {
-    title: 'Privacy Policy | Sergej Kukshausen',
+    title: 'Privacy policy | Sergej Kukshausen',
     description: 'Privacy policy for sergej.kukshausen.me: what data the site processes, where it is hosted and your rights under the GDPR.',
-    h1: 'Privacy Policy',
+    h1: 'Privacy policy',
     body: `
 <h2>1. Controller</h2>
 <p>Sergej Kukshausen<br />Budapest, Hungary<br />Email: <a href="mailto:sergej@kukshausen.me">sergej@kukshausen.me</a><br />Phone: <a href="tel:+36707871989">+36 70 787 1989</a></p>
@@ -346,7 +347,7 @@ export default {
 <p>This site links to external websites over which I have no control. The respective operator is always responsible for the content of linked pages. The pages were checked for possible legal violations when the links were set. If I become aware of a violation, I will remove the link immediately.</p>
 
 <h2>Copyright</h2>
-<p>Texts, photos and the logo on this site are my own work unless stated otherwise and are protected by copyright. Reproduction or distribution beyond the limits of copyright law requires my written consent. Brand icons in the toolkit section belong to their respective owners and are used only to identify the technology.</p>
+<p>Texts, photos and the logo on this site are my own work unless stated otherwise and are protected by copyright. Reproduction or distribution beyond the limits of copyright law requires my written consent. Brand icons on this site belong to their respective owners and are used only to identify the service.</p>
 
 <h2>Dispute resolution</h2>
 <p>The European Commission provides an online dispute resolution platform at <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>. I am neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
