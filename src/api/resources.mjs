@@ -18,9 +18,10 @@ export const LINKS = {
 };
 
 // One entry per item of the i18n lists, in the same order.
-const SERVICE_IDS = ['fractional-engineering-management', 'legacy-to-aws-migration', 'ai-skills-for-dev-teams', 'mtext-output-management'];
+const SERVICE_IDS = ['ai-skills-agents-mcp', 'fractional-engineering-management', 'legacy-to-aws-migration', 'mtext-output-management'];
 const PROJECTS = [
   { id: 'printing-group-ai-automation', organization: 'Online printing group, SE Asia', from: 2026, to: null },
+  { id: 'mtext-upgrade-github-copilot', organization: 'Enterprise M/Text platform', from: 2026, to: 2026 },
   { id: 'fiserv-payment-routing', organization: 'Fiserv', from: 2020, to: null },
   { id: 'fiserv-team-leadership', organization: 'Fiserv', from: 2020, to: null },
   { id: 'fiserv-ai-skills', organization: 'Fiserv', from: 2020, to: null },
@@ -29,8 +30,8 @@ const PROJECTS = [
   { id: 'tte-europe-java-web-apps', organization: 'TTE-Europe', from: 2014, to: 2015 },
 ];
 const STEP_IDS = ['intro-call', 'assessment', 'engagement'];
-const FAQ_IDS = ['mainframe-to-aws', 'german-speaking-fractional-em', 'mtext-consultant', 'ai-coding-tools-rollout', 'claude-skills-for-jira', 'engagement-start', 'what-is-fractional-em'];
-const FOCUS_IDS = ['leadership', 'programming', 'cloud-architecture', 'quality-compliance', 'certifications'];
+const FAQ_IDS = ['mainframe-to-aws', 'german-speaking-fractional-em', 'mtext-consultant', 'ai-coding-tools-rollout', 'claude-skills-for-jira', 'engagement-start', 'what-is-fractional-em', 'claude-copilot-codex-in-practice'];
+const FOCUS_IDS = ['leadership', 'ai-assisted-delivery', 'programming', 'cloud-architecture', 'quality-compliance', 'certifications'];
 const TOPIC_IDS = [...SERVICE_IDS, 'full-time-role', 'other'];
 const LEVELS = { de: 'native', ru: 'native', en: 'fluent', hu: 'basic' };
 

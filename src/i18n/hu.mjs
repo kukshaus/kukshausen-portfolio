@@ -3,12 +3,11 @@
 export default {
   lang: 'hu',
   ogLocale: 'hu_HU',
-  dateLong: '2026. október 28.',
+  dateLong: '2026. október 29.',
 
   meta: {
-    title: 'Sergej Kukshausen | Szoftverfejlesztési vezető és tanácsadó',
-    description:
-      'Engineering Manager Budapesten: 11+ év szoftverfejlesztés, ebből 8 a bank- és fintech szektorban. Fractional vezetés, mainframe–AWS migráció, AI skillek.',
+    title: 'Sergej Kukshausen | AI-mérnök: Claude, Copilot, Codex, MCP',
+    description: 'Freelance AI-mérnök Budapesten: skillek, agentek és MCP-szerverek Claude-hoz, GitHub Copilothoz és Codexhez. 11+ év fejlesztés, ebből 8 bank és fintech.',
     ogImageAlt: 'Sergej Kukshausen portréja',
   },
 
@@ -24,12 +23,12 @@ export default {
   },
 
   hero: {
-    eyebrow: 'Engineering Manager a Fiservnél · Budapest · DE/EN/RU/HU · remote',
-    h1: 'Mérnöki vezetés üzletkritikus fizetési platformokhoz',
-    sub: 'Több mint 11 év szoftverfejlesztés, ebből az utóbbi nyolc a bank- és fintech szektorban. Belsős vezető a Fiservnél, emellett nyitott fractional engineering vezetésre, mainframe–AWS migrációkra és AI skillek fejlesztésére fejlesztőcsapatok számára.',
+    eyebrow: 'Freelance AI-mérnök · Budapest · DE/EN/RU/HU · remote',
+    h1: 'AI skillek, agentek és MCP-szerverek fejlesztőcsapatoknak',
+    sub: 'Egyedi AI skilleket, agenteket és MCP-szervereket építek Claude-hoz, GitHub Copilothoz és Codexhez, és naponta használom őket valós projektekben: egy tíz éve működő M/Text platform frissítése GitHub Copilottal, folyamatautomatizálás öt csapatban Claude Code-dal, és az oldal mögötti MCP-szerver. Több mint 11 év szoftverfejlesztés, ebből az utóbbi nyolc a bank- és fintech szektorban.',
     cta: 'Foglaljon 20 perces hívást',
     cv: 'Önéletrajz letöltése (PDF)',
-    proof: 'Legutóbb a Fiservnél vezettem egy fizetési útválasztó platform migrációját mainframe-ről AWS-re, 31%-kal alacsonyabb infrastruktúraköltséggel.',
+    proof: 'Legutóbb GitHub Copilottal frissítettem egy tíz év alatt kiépült M/Text platformot a tőle függő három központi rendszerrel együtt, köztük az Apache load balancerrel.',
     proofLink: 'A projekt',
     available: 'Nyitott új megbízásokra',
     updated: 'Frissítve',
@@ -38,8 +37,14 @@ export default {
 
   services: {
     h2: 'Miben tudok segíteni',
-    intro: 'Négy terület, amelyen fintech- és banki csapatokat támogatok: remote Budapestről vagy helyszínen a DACH-régióban.',
+    intro: 'Négy terület, amelyen fejlesztő- és üzemeltetési csapatokat támogatok: remote Budapestről vagy helyszínen a DACH-régióban.',
     items: [
+      {
+        title: 'AI skillek, agentek &amp; MCP-szerverek',
+        desc: 'Egyedi skillek és agentek Claude-hoz, GitHub Copilothoz és Codexhez, MCP-szerverek, amelyek az AI-asszisztenseket az Ön rendszereihez kapcsolják, és folyamatautomatizálás Claude Code-dal. Jira, Confluence, GitLab és n8n integrációval.',
+        proof: 'Elkészült 2026-ban: számlaellenőrző AI (6755 megrendelés, 99%-os pontos egyezés), élesben futó banki egyeztető eszköz és két MCP-szerver, egy a webshopárakhoz és egy az oldal mögött. Bevezetéssel, guardrailekkel és képzéssel.',
+        link: 'Beszéljünk AI skillekről és MCP-szerverekről',
+      },
       {
         title: 'Fractional / interim engineering menedzsment',
         desc: 'Mérnökcsapat vezetése vagy stabilizálása 3–6 hónapig: toborzás, 1:1-ek, delivery ritmus, stakeholder-menedzsment.',
@@ -53,15 +58,9 @@ export default {
         link: 'Beszéljünk a migrációról',
       },
       {
-        title: 'AI skillek &amp; agentek fejlesztőcsapatoknak',
-        desc: 'Egyedi skillek és agentek Claude-hoz, GitHub Copilothoz és Codexhez, Jira-, Confluence-, GitLab- és n8n-integrációval.',
-        proof: 'Bevezetés, guardrailek és képzés. Ezeket az eszközöket magam is naponta használom.',
-        link: 'Beszéljünk az AI skillekről a csapatának',
-      },
-      {
         title: 'M/Text &amp; output management (DACH)',
-        desc: 'Banki dokumentumfolyamatok és output management modernizálása.',
-        proof: 'A Capgemininél megvalósítva: 75%-kal kevesebb manuális feldolgozás, évi kb. 180 000 € megtakarítás.',
+        desc: 'Banki dokumentumfolyamatok és output management modernizálása, valamint régóta futó M/Text platformok AI-támogatott frissítése.',
+        proof: 'A Capgemininél megvalósítva: 75%-kal kevesebb manuális feldolgozás, évi kb. 180 000 € megtakarítás. 2026-ban: egy tíz éve működő M/Text platform frissítése GitHub Copilottal.',
         link: 'Beszéljünk egy M/Text projektről',
       },
     ],
@@ -75,6 +74,12 @@ export default {
         title: 'AI-alapú folyamatautomatizálás öt csapatban',
         text: 'Automatizálási tanácsadó egy három országban működő online nyomdai csoportnál. Először a munkát végző kollégák mellett követem a folyamatokat, aztán a Claude Code a napi fejlesztőpartnerem: a meetingek leirataiból számozott követelmények lesznek, a követelményekből még aznap kattintható prototípusok, a prototípusokból pedig specifikációk, amelyek alapján a belső fejlesztők kódolnak. Elkészült egy AI-eszköz, amely beolvassa a beszállítói számlákat, és 6755 gyártási megrendeléssel veti össze őket, 99%-ban pontos egyezéssel; egy banki egyeztető eszköz, amely már élesben fut a webshop rendszerén; és egy MCP-szerver, amelyen keresztül AI-asszisztensek élő árakat kérhetnek le a webshopokból.',
         stack: 'Claude Code · MCP · Python · Next.js · MongoDB · Agent skills · Jira',
+      },
+      {
+        tag: 'M/TEXT PLATFORM · 2026',
+        title: 'Tíz éve működő M/Text platform frissítése GitHub Copilottal',
+        text: 'Egy üzletkritikus, nagyjából tíz év alatt kiépült M/Text dokumentumplatform frissítését vezettem a tőle függő három központi rendszerrel együtt, köztük az Apache load balancerrel. A GitHub Copilot a VS Code-ban végig az asszisztensem volt: sorrendbe rendezett változtatási terv függőségekkel és jóváhagyási pontokkal, üzemeltetési szkriptek, naplók összevetése hibakereséskor, AI-támogatott ellenőrzések a mentésekre, a telepítési készenlétre és a feldolgozási eredményekre, valamint státuszjelentések és átadások. Minden éles döntés és jóváhagyás nálam maradt. A frissítés élesbe került, az üzleti folyamatokat validáltuk, a visszaállítási mentések megmaradtak.',
+        stack: 'GitHub Copilot · VS Code · M/Text · Apache · Shell szkriptek',
       },
       {
         tag: 'FISERV · 2020 – JELENLEG',
@@ -149,6 +154,7 @@ export default {
     focusH: 'Fókuszterületek',
     focus: [
       ['Mérnöki vezetés', 'toborzás és interjúztatás, 1:1-ek és coaching, teljesítményértékelés, célkitűzés, backlog grooming a Producttal, Agile/Scrum/SAFe, stakeholder-menedzsment.'],
+      ['AI-támogatott fejlesztés', 'naponta Claude Code, GitHub Copilot és Codex; egyedi skillek és agentek, MCP-szerverek, AI-támogatott tervezés, szkriptelés, tesztelés és riportolás, minden éles lépés emberi jóváhagyással.'],
       ['Hands-on programozás', 'Python (napi szinten), Bash, Java, PHP, SQL, JavaScript/Angular, HTML/CSS; AI-támogatott fejlesztés egyedi skillekkel és agentekkel Copilothoz, Claude-hoz és Codexhez.'],
       ['Felhő &amp; architektúra', 'AWS managed szolgáltatások, mikroszolgáltatások, Docker, Kubernetes, Kafka, Jenkins, Argo CD, GitLab CI/CD.'],
       ['Minőség &amp; megfelelőség', 'PSD2- és GDPR-konform szállítás legacy és felhős környezetekben, auditra kész mérnöki munka.'],
@@ -225,6 +231,10 @@ export default {
         q: 'Mi az a fractional engineering manager?',
         a: 'A fractional engineering manager részmunkaidőben vezet egy mérnökcsapatot, jellemzően heti két-öt napban, három-hat hónapig, ahelyett hogy állandó munkavállalóként csatlakozna. Így tapasztalt vezetőt kap a toborzáshoz, az 1:1-ekhez, a delivery ritmushoz és a stakeholder-kommunikációhoz, amíg a csapatot bővíti vagy állandó vezetőt keres. Az interim engineering manager ugyanennek a konstrukciónak a teljes munkaidős változata.',
       },
+      {
+        q: 'Hogyan használja a Claude-ot, a GitHub Copilotot és a Codexet valós projektekben?',
+        a: 'Napi fejlesztőpartnerként, világos határokkal. Egy tíz éve működő M/Text platform frissítésénél a GitHub Copilot segített megtervezni a változtatást, üzemeltetési szkripteket írni, naplókat összevetni és státuszjelentéseket fogalmazni, miközben minden éles döntés nálam maradt. Claude Code-dal a meetingek leirataiból még aznap számozott követelményeket és kattintható prototípusokat készítek. MCP-szervereket is építek, amelyek élő adatot adnak az AI-asszisztenseknek, például webshopárakat egy online nyomdai csoportnak, valamint az oldal mögötti profil-, önéletrajz- és időpontfoglaló eszközöket. Az AI válasza számomra javaslat, amelyet ellenőrzök, nem utasítás, amelyet követek.',
+      },
     ],
   },
 
@@ -248,9 +258,9 @@ export default {
     topicPh: 'Válasszon témát',
     // The first four match the four service cards, in the same order.
     topics: [
+      'AI skillek, agentek vagy MCP-szerverek',
       'Fractional vagy interim engineering menedzsment',
       'Mainframe / legacy migráció AWS-re',
-      'AI skillek és agentek a fejlesztőcsapatomnak',
       'M/Text vagy output management',
       'Teljes munkaidős pozíció',
       'Egyéb',
@@ -274,8 +284,7 @@ export default {
 
   schema: {
     jobTitle: 'Engineering Manager, szoftverfejlesztés',
-    description:
-      'Hands-on Engineering Manager a Fiservnél, több mint 11 év szoftverfejlesztési tapasztalattal, ebből az utóbbi nyolc a bank- és fintech szektorban. Egy magas rendelkezésre állású fizetési routing rendszer migrációját vezette mainframe-ről cloud-native mikroszolgáltatásokra AWS-en. Budapesten él, nyitott fractional és tanácsadói megbízásokra.',
+    description: 'Freelance AI-mérnök és hands-on Engineering Manager a Fiservnél, több mint 11 év szoftverfejlesztési tapasztalattal, ebből az utóbbi nyolc a bank- és fintech szektorban. Claude Code-dal, GitHub Copilottal és Codexszel egyedi AI skilleket, agenteket, MCP-szervereket és folyamatautomatizálást épít, és éles munkában használja őket, például egy tíz éve működő M/Text platform frissítésénél. Budapesten él, nyitott freelance megbízásokra.',
   },
 
   legal: {

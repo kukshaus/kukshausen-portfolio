@@ -52,7 +52,7 @@ function schema(t) {
       { '@type': 'WebSite', '@id': `${SITE}#website`, url: SITE, name: 'Sergej Kukshausen', alternateName: 'sergej.kukshausen.me', inLanguage: ['en', 'de', 'ru', 'hu'], publisher: { '@id': person } },
       {
         '@type': 'ProfilePage', '@id': `${url}#profilepage`, url, name: stripTags(t.meta.title), inLanguage: t.lang,
-        dateCreated: '2026-10-16', dateModified: '2026-10-28T09:00:00+01:00',
+        dateCreated: '2026-10-16', dateModified: '2026-10-29T09:00:00+01:00',
         isPartOf: { '@id': `${SITE}#website` }, about: { '@id': person }, mainEntity: { '@id': person },
         primaryImageOfPage: { '@id': `${SITE}#portrait` },
       },
@@ -70,9 +70,9 @@ function schema(t) {
         ],
         hasOccupation: {
           '@type': 'Occupation', name: t.schema.jobTitle, occupationLocation: { '@type': 'City', name: 'Budapest' },
-          skills: 'Engineering leadership, hiring and coaching, Agile/Scrum/SAFe, Python, Bash, AWS, microservices, Kubernetes, Kafka, GitLab CI/CD, payment systems (SEPA, PSD2), AI-assisted development',
+          skills: 'Engineering leadership, hiring and coaching, Agile/Scrum/SAFe, Python, Bash, AWS, microservices, Kubernetes, Kafka, GitLab CI/CD, payment systems (SEPA, PSD2), AI-assisted development, custom AI skills and agents, Claude Code, GitHub Copilot, Codex, MCP servers, AI process automation',
         },
-        knowsAbout: ['Engineering management', 'Agile software development (Scrum, SAFe)', 'Payment systems (SEPA, PSD2)', 'Cloud migration from mainframe to AWS', 'Microservices architecture', 'Python', 'Bash', 'Java', 'Amazon Web Services', 'Docker', 'Kubernetes', 'Apache Kafka', 'GitLab CI/CD', 'AI-assisted software development (GitHub Copilot, Claude, Codex)', 'M/Text output management', 'n8n workflow automation'],
+        knowsAbout: ['Engineering management', 'Agile software development (Scrum, SAFe)', 'Payment systems (SEPA, PSD2)', 'Cloud migration from mainframe to AWS', 'Microservices architecture', 'Python', 'Bash', 'Java', 'Amazon Web Services', 'Docker', 'Kubernetes', 'Apache Kafka', 'GitLab CI/CD', 'AI skills and agents for Claude, GitHub Copilot and Codex', 'Claude Code', 'Model Context Protocol (MCP) servers', 'AI process automation', 'AI-assisted legacy platform upgrades', 'M/Text output management', 'n8n workflow automation'],
         knowsLanguage: [
           { '@type': 'Language', name: 'German', alternateName: 'de' },
           { '@type': 'Language', name: 'Russian', alternateName: 'ru' },

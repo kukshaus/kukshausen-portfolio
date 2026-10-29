@@ -3,12 +3,11 @@
 export default {
   lang: 'de',
   ogLocale: 'de_DE',
-  dateLong: '28. Oktober 2026',
+  dateLong: '29. Oktober 2026',
 
   meta: {
-    title: 'Sergej Kukshausen | Interim Engineering Manager (Fintech)',
-    description:
-      'Engineering Manager in Budapest, 11+ Jahre Software-Delivery, davon 8 in Banking und Fintech. Fractional Leadership, Mainframe-zu-AWS-Migration, KI-Skills.',
+    title: 'Sergej Kukshausen | KI-Engineer: Claude, Copilot, Codex, MCP',
+    description: 'Freelance KI-Engineer in Budapest: eigene Skills, Agents und MCP-Server für Claude, GitHub Copilot und Codex. 11+ Jahre Delivery, 8 in Banking und Fintech.',
     ogImageAlt: 'Porträt von Sergej Kukshausen',
   },
 
@@ -24,12 +23,12 @@ export default {
   },
 
   hero: {
-    eyebrow: 'Engineering Manager bei Fiserv · Budapest · DE/EN/RU/HU · remote',
-    h1: 'Engineering Leadership für geschäftskritische Zahlungsplattformen',
-    sub: 'Über 11 Jahre Software-Delivery, die letzten acht davon in Banking und Fintech. Festangestellt bei Fiserv und offen für Fractional Engineering Leadership, Mainframe-zu-AWS-Migrationen und KI-Skills für Entwicklungsteams.',
+    eyebrow: 'Freelance KI-Engineer · Budapest · DE/EN/RU/HU · remote',
+    h1: 'KI-Skills, Agents und MCP-Server für Entwicklungsteams',
+    sub: 'Ich baue eigene KI-Skills, Agents und MCP-Server für Claude, GitHub Copilot und Codex und setze sie täglich in echten Projekten ein: ein mit GitHub Copilot umgesetztes M/Text-Upgrade nach zehn Jahren Betrieb, Prozessautomatisierung in fünf Teams mit Claude Code und der MCP-Server hinter dieser Website. Über 11 Jahre Software-Delivery, die letzten acht davon in Banking und Fintech.',
     cta: '20-Minuten-Gespräch buchen',
     cv: 'Lebenslauf herunterladen (PDF)',
-    proof: 'Zuletzt habe ich bei Fiserv die Migration einer Payment-Routing-Plattform vom Mainframe auf AWS geleitet, mit 31 % geringeren Infrastrukturkosten.',
+    proof: 'Zuletzt habe ich mit GitHub Copilot eine über zehn Jahre gewachsene M/Text-Plattform aktualisiert, zusammen mit den drei abhängigen Kernsystemen, darunter der Apache-Load-Balancer.',
     proofLink: 'Zum Projekt',
     available: 'Offen für neue Mandate',
     updated: 'Aktualisiert',
@@ -38,8 +37,14 @@ export default {
 
   services: {
     h2: 'Wobei ich unterstütze',
-    intro: 'Vier Leistungen für Fintech- und Banking-Teams, remote aus Budapest oder vor Ort in der DACH-Region.',
+    intro: 'Vier Leistungen für Entwicklungs- und Operations-Teams, remote aus Budapest oder vor Ort in der DACH-Region.',
     items: [
+      {
+        title: 'KI-Skills, Agents &amp; MCP-Server',
+        desc: 'Eigene Skills und Agents für Claude, GitHub Copilot und Codex, MCP-Server, die KI-Assistenten mit Ihren Systemen verbinden, und Prozessautomatisierung mit Claude Code. Integriert mit Jira, Confluence, GitLab und n8n.',
+        proof: 'Geliefert 2026: eine KI, die Lieferantenrechnungen prüft (6.755 Aufträge, 99 % exakte Treffer), ein produktives Bankabgleich-Tool und zwei MCP-Server, einer für Webshop-Preise und der hinter dieser Website. Inklusive Rollout, Guardrails und Schulung.',
+        link: 'KI-Skills und MCP-Server besprechen',
+      },
       {
         title: 'Fractional / Interim Engineering Management',
         desc: 'Ein Engineering-Team für 3 bis 6 Monate führen oder stabilisieren: Recruiting, 1:1s, Delivery-Rhythmus, Stakeholder-Management.',
@@ -53,15 +58,9 @@ export default {
         link: 'Migration besprechen',
       },
       {
-        title: 'KI-Skills &amp; Agents für Entwicklungsteams',
-        desc: 'Individuelle Skills und Agents für Claude, GitHub Copilot und Codex, integriert mit Jira, Confluence, GitLab und n8n.',
-        proof: 'Rollout, Guardrails und Schulung. Ich nutze diese Tools selbst täglich.',
-        link: 'KI-Skills für Ihr Team besprechen',
-      },
-      {
         title: 'M/Text &amp; Output-Management (DACH)',
-        desc: 'Modernisierung von Dokumenten-Workflows und Output-Management im Bankenumfeld.',
-        proof: 'Bei Capgemini umgesetzt: 75 % weniger manuelle Bearbeitung, rund 180.000 € Einsparung pro Jahr.',
+        desc: 'Modernisierung von Dokumenten-Workflows und Output-Management im Bankenumfeld sowie KI-gestützte Upgrades lange laufender M/Text-Plattformen.',
+        proof: 'Bei Capgemini umgesetzt: 75 % weniger manuelle Bearbeitung, rund 180.000 € Einsparung pro Jahr. 2026: ein M/Text-Upgrade nach zehn Jahren Betrieb, umgesetzt mit GitHub Copilot.',
         link: 'M/Text-Projekt besprechen',
       },
     ],
@@ -75,6 +74,12 @@ export default {
         title: 'KI-gestützte Prozessautomatisierung in fünf Teams',
         text: 'Automatisierungsberater für eine Online-Druckereigruppe in drei Ländern. Ich begleite die Menschen bei ihrer Arbeit und nutze dann Claude Code als täglichen Build-Partner: Aus Meeting-Transkripten werden nummerierte Anforderungen, aus Anforderungen noch am selben Tag klickbare Prototypen und aus Prototypen Spezifikationen, nach denen die internen Entwickler programmieren. Geliefert: ein KI-Tool, das Lieferantenrechnungen liest und mit 6.755 Produktionsaufträgen abgleicht (99 % exakte Treffer), ein Bankabgleich-Tool, das jetzt im Shopsystem läuft, und ein MCP-Server, über den KI-Assistenten Live-Preise aus den Webshops abrufen.',
         stack: 'Claude Code · MCP · Python · Next.js · MongoDB · Agent Skills · Jira',
+      },
+      {
+        tag: 'M/TEXT-PLATTFORM · 2026',
+        title: 'M/Text-Upgrade nach zehn Jahren, umgesetzt mit GitHub Copilot',
+        text: 'Upgrade einer geschäftskritischen M/Text-Dokumentenplattform, die über rund zehn Jahre gewachsen war, zusammen mit den drei abhängigen Kernsystemen, darunter der Apache-Load-Balancer. GitHub Copilot in VS Code war durchgehend mein Assistent: ein geordneter Änderungsplan mit Abhängigkeiten und Freigabepunkten, Betriebsskripte, Log-Korrelation bei der Fehlersuche, KI-gestützte Prüfungen von Backups, Deployment-Bereitschaft und Verarbeitungsergebnissen sowie Statusberichte und Übergaben. Jede Produktionsentscheidung und Freigabe blieb bei mir. Das Upgrade ging live, die Geschäftsprozesse wurden validiert und die Rollback-Sicherungen blieben erhalten.',
+        stack: 'GitHub Copilot · VS Code · M/Text · Apache · Shell-Skripte',
       },
       {
         tag: 'FISERV · SEIT 2020',
@@ -149,6 +154,7 @@ export default {
     focusH: 'Schwerpunkte',
     focus: [
       ['Engineering Leadership', 'Recruiting und Interviews, 1:1s und Coaching, Performance Reviews, Zielvereinbarungen, Backlog Grooming mit Product, Agile/Scrum/SAFe, Stakeholder-Management.'],
+      ['KI-gestützte Delivery', 'Täglich Claude Code, GitHub Copilot und Codex; eigene Skills und Agents, MCP-Server, KI-gestützte Planung, Skripte, Tests und Berichte, mit menschlicher Freigabe für jeden Produktionsschritt.'],
       ['Hands-on-Entwicklung', 'Python (täglich), Bash, Java, PHP, SQL, JavaScript/Angular, HTML/CSS; KI-gestützte Entwicklung mit individuellen Skills und Agents für Copilot, Claude und Codex.'],
       ['Cloud &amp; Architektur', 'AWS Managed Services, Microservices, Docker, Kubernetes, Kafka, Jenkins, Argo CD, GitLab CI/CD.'],
       ['Qualität &amp; Compliance', 'PSD2- und DSGVO-konforme Delivery in Legacy- und Cloud-Umgebungen, auditfestes Engineering.'],
@@ -225,6 +231,10 @@ export default {
         q: 'Was ist ein Fractional Engineering Manager?',
         a: 'Ein Fractional Engineering Manager führt ein Engineering-Team in Teilzeit, typischerweise zwei bis fünf Tage pro Woche für drei bis sechs Monate, statt fest angestellt zu werden. Sie erhalten einen erfahrenen Manager für Recruiting, 1:1s, Delivery-Rhythmus und Stakeholder-Kommunikation, während Sie das Team ausbauen oder eine feste Führungskraft suchen. Ein Interim Engineering Manager ist die Vollzeitvariante desselben Modells.',
       },
+      {
+        q: 'Wie setzen Sie Claude, GitHub Copilot und Codex in echten Projekten ein?',
+        a: 'Als täglichen Build-Partner mit klaren Grenzen. Bei einem M/Text-Upgrade nach zehn Jahren Betrieb hat mir GitHub Copilot geholfen, die Änderung zu planen, Betriebsskripte zu schreiben, Logs zu korrelieren und Statusberichte zu entwerfen; jede Produktionsentscheidung blieb bei mir. Mit Claude Code mache ich aus Meeting-Transkripten noch am selben Tag nummerierte Anforderungen und klickbare Prototypen. Außerdem baue ich MCP-Server, die KI-Assistenten Live-Daten geben, zum Beispiel Webshop-Preise für eine Online-Druckereigruppe und die Profil-, Lebenslauf- und Buchungs-Tools hinter dieser Website. KI-Ergebnisse sind Vorschläge, die ich prüfe, keine Anweisungen, denen ich folge.',
+      },
     ],
   },
 
@@ -248,9 +258,9 @@ export default {
     topicPh: 'Thema auswählen',
     // The first four match the four service cards, in the same order.
     topics: [
+      'KI-Skills, Agents oder MCP-Server',
       'Fractional oder Interim Engineering Management',
       'Mainframe-/Legacy-Migration zu AWS',
-      'KI-Skills und Agents für mein Entwicklungsteam',
       'M/Text oder Output-Management',
       'Festanstellung',
       'Etwas anderes',
@@ -274,8 +284,7 @@ export default {
 
   schema: {
     jobTitle: 'Engineering Manager, Softwareentwicklung',
-    description:
-      'Hands-on Engineering Manager bei Fiserv mit über 11 Jahren Software-Delivery, die letzten acht davon in Banking und Fintech. Leitete die Migration eines hochverfügbaren Payment-Routing-Systems vom Mainframe auf Cloud-native Microservices auf AWS. Sitz in Budapest, offen für Fractional- und Beratungsmandate.',
+    description: 'Freelance KI-Engineer und Hands-on Engineering Manager bei Fiserv mit über 11 Jahren Software-Delivery, die letzten acht in Banking und Fintech. Baut mit Claude Code, GitHub Copilot und Codex eigene KI-Skills, Agents, MCP-Server und Prozessautomatisierung und setzt sie in Produktionsprojekten ein, etwa bei einem M/Text-Upgrade nach zehn Jahren Betrieb. Sitz in Budapest, offen für Freelance-Projekte.',
   },
 
   legal: {

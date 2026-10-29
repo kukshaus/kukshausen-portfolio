@@ -3,12 +3,11 @@
 export default {
   lang: 'en',
   ogLocale: 'en_GB',
-  dateLong: '28 October 2026',
+  dateLong: '29 October 2026',
 
   meta: {
-    title: 'Sergej Kukshausen | Engineering Manager &amp; Fractional Tech Lead',
-    description:
-      'Engineering Manager in Budapest, 11+ years in software delivery, 8 in banking and fintech. Open to fractional leadership, mainframe-to-AWS migrations and AI skills for dev teams.',
+    title: 'Sergej Kukshausen | AI engineer: Claude, Copilot, Codex, MCP',
+    description: 'Freelance AI engineer in Budapest: skills, agents and MCP servers for Claude, GitHub Copilot and Codex. 11+ years of delivery, 8 in banking and fintech.',
     ogImageAlt: 'Portrait of Sergej Kukshausen',
   },
 
@@ -24,12 +23,12 @@ export default {
   },
 
   hero: {
-    eyebrow: 'Engineering Manager at Fiserv · Budapest · DE/EN/RU/HU · remote',
-    h1: 'Engineering leadership for mission-critical payment platforms',
-    sub: '11+ years of software delivery, the last eight in banking and fintech. In-house at Fiserv, and open to fractional engineering leadership, mainframe-to-AWS migrations and AI-skills work for development teams.',
+    eyebrow: 'Freelance AI engineer · Budapest · DE/EN/RU/HU · remote',
+    h1: 'AI skills, agents and MCP servers for engineering teams',
+    sub: 'I build custom AI skills, agents and MCP servers for Claude, GitHub Copilot and Codex, and use them every day in real delivery: an upgrade of a ten-year-old M/Text platform, run with GitHub Copilot, process automation across five teams with Claude Code, and the MCP server behind this website. 11+ years of software delivery, the last eight in banking and fintech.',
     cta: 'Book a 20-min call',
     cv: 'Download CV (PDF)',
-    proof: 'Most recently I led the migration of a payment routing platform at Fiserv from mainframe to AWS, with 31% lower infrastructure cost.',
+    proof: 'Most recently I used GitHub Copilot to upgrade an M/Text platform that had grown over ten years, together with the three core systems that depend on it, including the Apache load balancer.',
     proofLink: 'See the work',
     available: 'Open to new engagements',
     updated: 'Updated',
@@ -38,8 +37,14 @@ export default {
 
   services: {
     h2: 'How I can help',
-    intro: 'Four things I do for fintech and banking teams, remote from Budapest or on-site in the DACH region.',
+    intro: 'Four things I do for engineering and operations teams, remote from Budapest or on-site in the DACH region.',
     items: [
+      {
+        title: 'AI skills, agents &amp; MCP servers',
+        desc: 'Custom skills and agents for Claude, GitHub Copilot and Codex, MCP servers that connect AI assistants to your systems, and process automation built with Claude Code. Integrated with Jira, Confluence, GitLab and n8n.',
+        proof: 'Shipped in 2026: an invoice-checking AI (6,755 jobs, 99% exact matches), a live bank-matching tool and two MCP servers, one for webshop prices and the one behind this site. Rollout, guardrails and training included.',
+        link: 'Discuss AI skills and MCP servers',
+      },
       {
         title: 'Fractional / interim engineering management',
         desc: 'Lead or stabilise an engineering team for 3 to 6 months: hiring, 1:1s, delivery cadence, stakeholder management.',
@@ -53,15 +58,9 @@ export default {
         link: 'Discuss a migration',
       },
       {
-        title: 'AI skills &amp; agents for dev teams',
-        desc: 'Custom skills and agents for Claude, GitHub Copilot and Codex, integrated with Jira, Confluence, GitLab and n8n.',
-        proof: 'Rollout, guardrails and training. I use these tools every day myself.',
-        link: 'Discuss AI skills for your team',
-      },
-      {
         title: 'M/Text &amp; output management (DACH)',
-        desc: 'Modernise banking document workflows and output management.',
-        proof: 'Done at Capgemini: 75% less manual processing, about €180K saved per year.',
+        desc: 'Modernise banking document workflows and output management, and upgrade long-running M/Text platforms with AI assistance.',
+        proof: 'Done at Capgemini: 75% less manual processing, about €180K saved per year. In 2026: an upgrade of a ten-year-old M/Text platform, run with GitHub Copilot.',
         link: 'Discuss an M/Text project',
       },
     ],
@@ -75,6 +74,12 @@ export default {
         title: 'AI-driven process automation across five teams',
         text: 'Automation consultant for an online printing group in three countries. I shadow the people doing the work, then use Claude Code as my daily build partner: meeting transcripts become numbered requirements, requirements become clickable prototypes the same day, and prototypes become specs the in-house developers code from. Delivered an AI tool that reads supplier invoices and checks them against 6,755 production jobs with 99% exact matches, a bank-matching tool now live on the shop system, and an MCP server that lets AI assistants quote live prices from the webshops.',
         stack: 'Claude Code · MCP · Python · Next.js · MongoDB · Agent skills · Jira',
+      },
+      {
+        tag: 'M/TEXT PLATFORM · 2026',
+        title: 'Upgrading a ten-year-old M/Text platform with GitHub Copilot',
+        text: 'Led the upgrade of a business-critical M/Text document platform that had grown over about ten years, together with the three core systems that depend on it, including the Apache load balancer. GitHub Copilot in VS Code was my assistant throughout: an ordered change plan with dependencies and approval points, operational scripts, log correlation while troubleshooting, AI-assisted checks of backups, deployment readiness and processing results, and the status updates and handovers. Every production decision and approval stayed with me. The upgrade went live with business workflows validated and rollback assets kept.',
+        stack: 'GitHub Copilot · VS Code · M/Text · Apache · Shell scripting',
       },
       {
         tag: 'FISERV · 2020 – PRESENT',
@@ -149,6 +154,7 @@ export default {
     focusH: 'Focus areas',
     focus: [
       ['Engineering leadership', 'hiring and interviewing, 1:1s and coaching, performance reviews, goal setting, backlog grooming with Product, Agile/Scrum/SAFe, stakeholder management.'],
+      ['AI-assisted delivery', 'Claude Code, GitHub Copilot and Codex daily; custom skills and agents, MCP servers, AI-assisted planning, scripting, testing and reporting, with human approval for every production step.'],
       ['Hands-on programming', 'Python (daily), Bash, Java, PHP, SQL, JavaScript/Angular, HTML/CSS; AI-assisted development with custom skills and agents for Copilot, Claude and Codex.'],
       ['Cloud &amp; architecture', 'AWS managed services, microservices, Docker, Kubernetes, Kafka, Jenkins, Argo CD, GitLab CI/CD.'],
       ['Quality &amp; compliance', 'PSD2 and GDPR-compliant delivery across legacy and cloud environments, audit-ready engineering.'],
@@ -225,6 +231,10 @@ export default {
         q: 'What is a fractional engineering manager?',
         a: 'A fractional engineering manager leads an engineering team part-time, typically two to five days a week for three to six months, instead of joining as a permanent employee. You get an experienced manager for hiring, 1:1s, delivery cadence and stakeholder communication while you grow the team or search for a permanent lead. An interim engineering manager is the full-time variant of the same arrangement.',
       },
+      {
+        q: 'How do you use Claude, GitHub Copilot and Codex on real projects?',
+        a: 'As a daily build partner with clear limits. When I upgraded a ten-year-old M/Text platform, GitHub Copilot helped me plan the change, write operational scripts, correlate logs and draft status updates, while every production decision stayed with me. With Claude Code I turn meeting transcripts into numbered requirements and clickable prototypes the same day. I also build MCP servers that give AI assistants live data, for example webshop prices for an online printing group and the profile, CV and booking tools behind this website. AI output is a proposal I check, not an instruction I follow.',
+      },
     ],
   },
 
@@ -248,9 +258,9 @@ export default {
     topicPh: 'Choose a topic',
     // The first four match the four service cards, in the same order.
     topics: [
+      'AI skills, agents or MCP servers',
       'Fractional or interim engineering management',
       'Mainframe / legacy to AWS migration',
-      'AI skills and agents for my dev team',
       'M/Text or output management',
       'Full-time role',
       'Something else',
@@ -274,8 +284,7 @@ export default {
 
   schema: {
     jobTitle: 'Engineering Manager, Software Development',
-    description:
-      'Hands-on Engineering Manager at Fiserv with 11+ years of software delivery, the last eight in banking and fintech. Led the migration of a high-availability payment routing system from mainframe to cloud-native microservices on AWS. Based in Budapest, open to fractional and consulting engagements.',
+    description: 'Freelance AI engineer and hands-on Engineering Manager at Fiserv with 11+ years of software delivery, the last eight in banking and fintech. Builds custom AI skills, agents, MCP servers and process automation with Claude Code, GitHub Copilot and Codex, and uses them in production work such as upgrading a ten-year-old M/Text platform. Based in Budapest, open to freelance engagements.',
   },
 
   legal: {
